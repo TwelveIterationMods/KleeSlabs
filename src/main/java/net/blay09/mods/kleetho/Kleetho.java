@@ -1,7 +1,7 @@
 package net.blay09.mods.kleetho;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
@@ -19,12 +19,12 @@ public class Kleetho {
     private static final Random rand = new Random();
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent
-    public void kleetho(BlockEvent.BreakEvent event) {
+    public void onBreakBlock(BlockEvent.BreakEvent event) {
         if(event.getPlayer().isSneaking() && isDoubleSlab(event.block)) {
             if(!event.world.isRemote) {
                 float scale = 0.7f;
@@ -35,7 +35,11 @@ public class Kleetho {
                 entityItem.delayBeforeCanPickup = 10;
                 event.world.spawnEntityInWorld(entityItem);
             }
-            event.world.setBlock(event.x, event.y, event.z, getSingleSlab(event.block), event.blockMetadata, 1 | 2);
+            int metadata = event.blockMetadata;
+            if(event.getPlayer().posY + event.getPlayer().getEyeHeight() < event.y) {
+                metadata |= 8;
+            }
+            event.world.setBlock(event.x, event.y, event.z, getSingleSlab(event.block), metadata, 1 | 2);
             event.setCanceled(true);
         }
     }
