@@ -1,0 +1,16 @@
+[
+{
+  "modid": "kleetho",
+  "name": "Kleetho",
+  "description": "Allows holding shift to only break the top half of a double slab.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["BlayTheNinth"],
+  "credits": "BlayTheNinth, http://www.twitch.tv/kleetho",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
