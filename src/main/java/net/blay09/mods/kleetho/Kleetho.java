@@ -142,6 +142,10 @@ public class Kleetho {
         config.get("mods." + modId, "witchwoodslab", "witchwooddoubleslab");
         config.get("mods." + modId, "iceslab", "icedoubleslab");
         config.get("mods." + modId, "snowslab", "snowdoubleslab");
+
+        modId = "ae2";
+        config.get("mods." + modId, "id", modId);
+        config.get("mods." + modId, "tile.SkyStoneSlabBlock", "tile.SkyStoneSlabBlock.double");
     }
 
     @Mod.EventHandler
