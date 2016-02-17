@@ -183,7 +183,7 @@ public class Kleetho {
         }
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public void onTooltip(ItemTooltipEvent event) {
         GameRegistry.UniqueIdentifier uid = GameRegistry.findUniqueIdentifierFor(event.itemStack.getItem());
         event.toolTip.add("Mod: " + uid.modId);
@@ -196,7 +196,7 @@ public class Kleetho {
             GameRegistry.UniqueIdentifier uid = GameRegistry.findUniqueIdentifierFor(event.world.getBlock(event.x, event.y, event.z));
             event.entityPlayer.addChatComponentMessage(new ChatComponentText("Mod: " + uid.modId + " Name: " + uid.name));
         }
-    }
+    }*/
 
     @SubscribeEvent
     public void onBreakBlock(BlockEvent.BreakEvent event) {
