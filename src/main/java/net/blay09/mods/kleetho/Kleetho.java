@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.world.BlockEvent;
 
 import java.util.Random;
@@ -18,14 +19,21 @@ public class Kleetho {
 
     private static final Random rand = new Random();
 
+    private boolean invertSneak;
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
+
+        Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+        config.load();
+
+        invertSneak = config.getBoolean("Invert Sneaking Check", "general", false, "Set this to true to invert the sneaking check for breaking only half a slab.");
     }
 
     @SubscribeEvent
     public void onBreakBlock(BlockEvent.BreakEvent event) {
-        if(event.getPlayer().isSneaking() && isDoubleSlab(event.block)) {
+        if(event.getPlayer().isSneaking() != invertSneak && isDoubleSlab(event.block)) {
             if(!event.world.isRemote) {
                 float scale = 0.7f;
                 double xOffset = rand.nextFloat() * scale + 1f - scale * 0.5;

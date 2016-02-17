@@ -14,10 +14,15 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
-
 apply plugin: 'forge'
+apply plugin: 'maven'
 
-version = "1.0.0"
+def BUILD_NUMBER = System.getenv("BUILD_NUMBER") ?: "0"
+def MAVEN_REPO = System.getenv("MAVEN_REPO") ?: ""
+def MAVEN_USERNAME = System.getenv("MAVEN_USERNAME") ?: ""
+def MAVEN_PASSWORD = System.getenv("MAVEN_PASSWORD") ?: ""
+
+version = "1.2." + BUILD_NUMBER
 group= "net.blay09.mods"
 archivesBaseName = "kleetho"
 
@@ -42,5 +47,48 @@ processResources
         
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+}
+
+jar {
+    appendix "mc" + minecraft.version
+}
+
+task jarDev(type: Jar) {
+    from sourceSets.main.output
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    classifier "dev"
+    appendix "mc" + minecraft.version
+}
+
+artifacts {
+    archives jarDev
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: MAVEN_REPO) {
+                authentication(userName: MAVEN_USERNAME, password: MAVEN_PASSWORD)
+            }
+
+            pom {
+                groupId = project.group
+                version = project.version
+                artifactId = project.archivesBaseName
+            }
+
+            pom.withXml {
+                asNode().dependencies.dependency.findAll {
+                    it.scope.text() == "compile"
+                }.each {
+                    if(it.optional)
+                        it.optional.value = 'true'
+                    else
+                        it.appendNode('optional', 'true');
+                }
+            }
+        }
     }
 }
