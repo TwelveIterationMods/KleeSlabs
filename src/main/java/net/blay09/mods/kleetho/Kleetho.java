@@ -205,7 +205,7 @@ public class Kleetho {
     @SubscribeEvent
     public void onBreakBlock(BlockEvent.BreakEvent event) {
         if(event.getPlayer().isSneaking() != invertSneak && isDoubleSlab(event.block)) {
-            if(!event.world.isRemote) {
+            if(!event.world.isRemote && event.getPlayer().canHarvestBlock(event.block)) {
                 spawnItem(new ItemStack(Item.getItemFromBlock(getSingleSlab(event.block)), 1, event.block.damageDropped(event.blockMetadata)), event.world, event.x, event.y, event.z);
             }
             int metadata = event.blockMetadata;
