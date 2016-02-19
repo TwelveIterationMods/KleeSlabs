@@ -24,7 +24,7 @@ def MAVEN_PASSWORD = System.getenv("MAVEN_PASSWORD") ?: ""
 
 version = "1.2." + BUILD_NUMBER
 group= "net.blay09.mods"
-archivesBaseName = "kleetho"
+archivesBaseName = "kleeslabs"
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"

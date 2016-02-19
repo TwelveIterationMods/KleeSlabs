@@ -26,7 +26,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import java.util.Map;
 import java.util.Random;
 
-@Mod(modid = "kleetho", name = "Kleetho")
+@Mod(modid = "kleeslabs", name = "KleeSlabs")
 public class Kleetho {
 
     private static final Random rand = new Random();
