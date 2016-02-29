@@ -9,18 +9,18 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 
 import java.util.Map;
@@ -154,14 +154,14 @@ public class Kleetho {
         slabMap.put(Blocks.double_wooden_slab, Blocks.wooden_slab);
 
         ConfigCategory category = config.getCategory("mods");
-        for(ConfigCategory mod : category.getChildren()) {
+        for (ConfigCategory mod : category.getChildren()) {
             String modId;
-            if(mod.get("id") != null) {
+            if (mod.get("id") != null) {
                 modId = mod.get("id").getString();
             } else {
                 modId = mod.getName();
             }
-            if(Loader.isModLoaded(modId)) {
+            if (Loader.isModLoaded(modId)) {
                 for (Map.Entry<String, Property> entry : mod.entrySet()) {
                     String singleSlabName = entry.getKey();
                     String doubleSlabName = entry.getValue().getString();
@@ -176,10 +176,10 @@ public class Kleetho {
     private void registerSlabs(String modId, String singleName, String doubleName) {
         Block singleBlock = GameRegistry.findBlock(modId, singleName);
         Block doubleBlock = GameRegistry.findBlock(modId, doubleName);
-        if(singleBlock != null && doubleBlock != null) {
+        if (singleBlock != null && doubleBlock != null) {
             slabMap.put(doubleBlock, singleBlock);
         } else {
-            if(singleBlock == null) {
+            if (singleBlock == null) {
                 System.out.println("Could not register slabs for " + modId + ": " + singleName + " not found");
             } else {
                 System.out.println("Could not register slabs for " + modId + ": " + doubleName + " not found");
@@ -204,12 +204,17 @@ public class Kleetho {
 
     @SubscribeEvent
     public void onBreakBlock(BlockEvent.BreakEvent event) {
-        if(event.getPlayer().isSneaking() != invertSneak && isDoubleSlab(event.block)) {
-            if(!event.world.isRemote && event.getPlayer().canHarvestBlock(event.block) && !event.getPlayer().capabilities.isCreativeMode) {
+        MovingObjectPosition mop = rayTrace(event.getPlayer(), 6);
+        Vec3 hitVec = mop != null ? mop.hitVec : null;
+        if(hitVec != null) {
+            hitVec = hitVec.addVector(-event.x, -event.y, -event.z);
+        }
+        if (event.getPlayer().isSneaking() != invertSneak && isDoubleSlab(event.block)) {
+            if (!event.world.isRemote && event.getPlayer().canHarvestBlock(event.block) && !event.getPlayer().capabilities.isCreativeMode) {
                 spawnItem(new ItemStack(Item.getItemFromBlock(getSingleSlab(event.block)), 1, event.block.damageDropped(event.blockMetadata)), event.world, event.x, event.y, event.z);
             }
             int metadata = event.blockMetadata;
-            if(event.getPlayer().posY + event.getPlayer().getEyeHeight() < event.y) {
+            if (hitVec != null && hitVec.yCoord < 0.5f) {
                 metadata |= 8;
             }
             event.world.setBlock(event.x, event.y, event.z, getSingleSlab(event.block), metadata, 1 | 2);
@@ -233,6 +238,12 @@ public class Kleetho {
 
     public Block getSingleSlab(Block doubleSlab) {
         return slabMap.get(doubleSlab);
+    }
+
+    public static MovingObjectPosition rayTrace(EntityLivingBase entity, double length) {
+        Vec3 startPos = Vec3.createVectorHelper(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ);
+        Vec3 endPos = startPos.addVector(entity.getLookVec().xCoord * length, entity.getLookVec().yCoord * length, entity.getLookVec().zCoord * length);
+        return entity.worldObj.rayTraceBlocks(startPos, endPos);
     }
 
 }
