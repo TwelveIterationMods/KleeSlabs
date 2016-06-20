@@ -130,7 +130,14 @@ public class KleeSlabs {
     @SideOnly(Side.CLIENT)
     public void onDrawBlockHighlight(DrawBlockHighlightEvent event) {
         if(!requireSneak || event.getPlayer().isSneaking() != invertSneak) {
+            if(event.getTarget().typeOfHit != RayTraceResult.Type.BLOCK) {
+                return;
+            }
             BlockPos pos = event.getTarget().getBlockPos();
+            //noinspection ConstantConditions /// @Nullable
+            if(pos == null) {
+                return;
+            }
             IBlockState target = event.getPlayer().worldObj.getBlockState(pos);
             SlabConverter slabConverter = slabMap.get(target.getBlock());
             if (slabConverter != null) {
