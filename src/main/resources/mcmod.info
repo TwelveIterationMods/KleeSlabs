@@ -1,8 +1,8 @@
 [
 {
-  "modid": "kleetho",
-  "name": "Kleetho",
-  "description": "Allows holding shift to only break the top half of a double slab.",
+  "modid": "kleeslabs",
+  "name": "KleeSlabs",
+  "description": "Allows holding shift to only break one half of a double slab.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",

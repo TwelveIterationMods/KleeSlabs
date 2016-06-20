@@ -1,2 +1,2 @@
 # KleethoMod
-Minecraft Mod. Allows holding shift to only break the top half of a double slab.
+Minecraft Mod. Allows holding shift to only break one half of a double slab.
