@@ -143,7 +143,6 @@ public class KleeSlabs {
             if (slabConverter != null) {
                 GlStateManager.enableBlend();
                 GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-                GlStateManager.color(0f, 0f, 0f, 0.4f);
                 GlStateManager.glLineWidth(2f);
                 GlStateManager.disableTexture2D();
                 GlStateManager.depthMask(false);
@@ -155,7 +154,7 @@ public class KleeSlabs {
                 if(event.getTarget().hitVec.yCoord - player.posY > 0.5) {
                     halfAABB = halfAABB.offset(0, 0.5, 0);
                 }
-                RenderGlobal.drawSelectionBoundingBox(halfAABB.expandXyz(0.002).offset(-offsetX, -offsetY, -offsetZ));
+                RenderGlobal.func_189697_a(halfAABB.expandXyz(0.002).offset(-offsetX, -offsetY, -offsetZ), 0f, 0f, 0f, 0.4f); // drawSelectionBoundingBox
                 GlStateManager.depthMask(true);
                 GlStateManager.enableTexture2D();
                 GlStateManager.disableBlend();
