@@ -15,7 +15,7 @@ public abstract class CompatSlabs {
 	public Block getModBlock(String modId, String blockName) {
 		Block block = Block.REGISTRY.getObject(new ResourceLocation(modId, blockName));
 		if(block == Blocks.AIR) {
-			KleeSlabs.logger.error("Slab {}:{} could not be found.");
+			KleeSlabs.logger.error("Slab {}:{} could not be found.", modId, blockName);
 			return null;
 		}
 		return block;
