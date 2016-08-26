@@ -11,11 +11,16 @@ public abstract class CompatSlabs {
 	public static final String FORESTRY = "forestry";
 	public static final String BIOMES_O_PLENTY = "BiomesOPlenty";
 	public static final String QUARK = "Quark";
+	public static final String MISSING_PIECES = "missing_pieces";
+
+	protected boolean isSilent;
 
 	public Block getModBlock(String modId, String blockName) {
 		Block block = Block.REGISTRY.getObject(new ResourceLocation(modId, blockName));
 		if(block == Blocks.AIR) {
-			KleeSlabs.logger.error("Slab {}:{} could not be found.", modId, blockName);
+			if(!isSilent) {
+				KleeSlabs.logger.error("Slab {}:{} could not be found.", modId, blockName);
+			}
 			return null;
 		}
 		return block;
