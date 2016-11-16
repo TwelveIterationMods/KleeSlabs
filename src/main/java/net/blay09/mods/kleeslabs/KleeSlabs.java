@@ -20,6 +20,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -138,11 +139,10 @@ public class KleeSlabs {
                 return;
             }
             BlockPos pos = event.getTarget().getBlockPos();
-            //noinspection ConstantConditions /// @Nullable
-            if(pos == null) {
+            if(pos == null) { // BlockPos needs here @Nullable
                 return;
             }
-            IBlockState target = event.getPlayer().worldObj.getBlockState(pos);
+            IBlockState target = event.getPlayer().world.getBlockState(pos);
             SlabConverter slabConverter = slabMap.get(target.getBlock());
             if (slabConverter != null) {
                 GlStateManager.enableBlend();
@@ -158,7 +158,7 @@ public class KleeSlabs {
                 if(event.getTarget().hitVec.yCoord - player.posY > 0.5) {
                     halfAABB = halfAABB.offset(0, 0.5, 0);
                 }
-                RenderGlobal.func_189697_a(halfAABB.expandXyz(0.002).offset(-offsetX, -offsetY, -offsetZ), 0f, 0f, 0f, 0.4f); // drawSelectionBoundingBox
+                RenderGlobal.drawSelectionBoundingBox(halfAABB.expandXyz(0.002).offset(-offsetX, -offsetY, -offsetZ), 0f, 0f, 0f, 0.4f);
                 GlStateManager.depthMask(true);
                 GlStateManager.enableTexture2D();
                 GlStateManager.disableBlend();
@@ -183,7 +183,7 @@ public class KleeSlabs {
             IBlockState dropState = slabConverter.getSingleSlab(state, BlockSlab.EnumBlockHalf.BOTTOM);
             if (!event.getWorld().isRemote && event.getPlayer().canHarvestBlock(event.getState()) && !event.getPlayer().capabilities.isCreativeMode) {
                 Item slabItem = Item.getItemFromBlock(dropState.getBlock());
-                if(slabItem != null) {
+                if(slabItem != Items.field_190931_a) {
                     spawnItem(new ItemStack(slabItem, 1, dropState.getBlock().damageDropped(dropState)), event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ());
                 }
             }
@@ -211,7 +211,7 @@ public class KleeSlabs {
     public static RayTraceResult rayTrace(EntityLivingBase entity, double length) {
         Vec3d startPos = new Vec3d(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ);
         Vec3d endPos = startPos.addVector(entity.getLookVec().xCoord * length, entity.getLookVec().yCoord * length, entity.getLookVec().zCoord * length);
-        return entity.worldObj.rayTraceBlocks(startPos, endPos);
+        return entity.world.rayTraceBlocks(startPos, endPos);
     }
 
     private static class SlabDebugger {
@@ -224,7 +224,7 @@ public class KleeSlabs {
         public void onRightClick(PlayerInteractEvent.LeftClickBlock event) {
             if(event.getSide() == Side.CLIENT) {
                 IBlockState state = event.getWorld().getBlockState(event.getPos());
-                event.getEntityPlayer().addChatComponentMessage(new TextComponentString("Mod: " + state.getBlock().getRegistryName().getResourceDomain() + " Name: " + state.getBlock().getRegistryName().getResourcePath()));
+                event.getEntityPlayer().addChatComponentMessage(new TextComponentString("Mod: " + state.getBlock().getRegistryName().getResourceDomain() + " Name: " + state.getBlock().getRegistryName().getResourcePath()), false);
             }
         }
     }
