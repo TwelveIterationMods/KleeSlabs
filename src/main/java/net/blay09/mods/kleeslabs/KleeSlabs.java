@@ -47,7 +47,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 import java.util.Random;
 
-@Mod(modid = "kleeslabs", name = "KleeSlabs")
+@Mod(modid = "kleeslabs", name = "KleeSlabs", acceptedMinecraftVersions = "[1.11]")
 public class KleeSlabs {
 
     public static final Logger logger = LogManager.getLogger();

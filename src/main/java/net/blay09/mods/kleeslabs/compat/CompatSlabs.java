@@ -7,10 +7,10 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class CompatSlabs {
 
-	public static final String BOTANIA = "Botania";
+	public static final String BOTANIA = "botania";
 	public static final String FORESTRY = "forestry";
-	public static final String BIOMES_O_PLENTY = "BiomesOPlenty";
-	public static final String QUARK = "Quark";
+	public static final String BIOMES_O_PLENTY = "biomesoplenty";
+	public static final String QUARK = "quark";
 	public static final String MISSING_PIECES = "missing_pieces";
 
 	protected boolean isSilent;
