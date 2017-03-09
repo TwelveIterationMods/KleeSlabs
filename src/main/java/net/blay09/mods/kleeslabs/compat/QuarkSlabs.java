@@ -43,7 +43,6 @@ public class QuarkSlabs extends CompatSlabs {
 		registerSlab("stained_clay_tiles_brown_slab");
 		registerSlab("stained_clay_tiles_white_slab");
 		registerSlab("stained_clay_tiles_pink_slab");
-		registerSlab("stained_clay_tiles_slab");
 		registerSlab("reed_block_slab");
 		registerSlab("thatch_slab");
 	}
