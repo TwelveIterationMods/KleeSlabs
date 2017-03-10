@@ -122,6 +122,10 @@ public class KleeSlabs {
             event.buildSoftDependProxy(CompatSlabs.MISSING_PIECES, "net.blay09.mods.kleeslabs.compat.MissingPiecesSlabs");
         }
 
+        if(config.getBoolean("Slabcraft", "compat", true, "")) {
+            event.buildSoftDependProxy(CompatSlabs.SLABCRAFT, "net.blay09.mods.kleeslabs.compat.SlabcraftSlabs");
+        }
+
         if(config.hasChanged()) {
             config.save();
         }
