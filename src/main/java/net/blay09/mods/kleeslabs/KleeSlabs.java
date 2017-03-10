@@ -126,6 +126,10 @@ public class KleeSlabs {
             event.buildSoftDependProxy(CompatSlabs.SLABCRAFT, "net.blay09.mods.kleeslabs.compat.SlabcraftSlabs");
         }
 
+        if(config.getBoolean("UndergroundBiomesContructs", "compat", true, "")) {
+            event.buildSoftDependProxy(CompatSlabs.UNDERGROUNDBIOMES, "net.blay09.mods.kleeslabs.compat.UndergroundBiomesSlabs");
+        }
+
         if(config.hasChanged()) {
             config.save();
         }

@@ -1,7 +1,7 @@
 package net.blay09.mods.kleeslabs.compat;
 
 import net.blay09.mods.kleeslabs.KleeSlabs;
-import net.blay09.mods.kleeslabs.converter.SimpleSlabConverter;
+import net.blay09.mods.kleeslabs.converter.SmartSlabConverter;
 import net.minecraft.block.Block;
 
 public class SlabcraftSlabs extends CompatSlabs {
@@ -59,7 +59,7 @@ public class SlabcraftSlabs extends CompatSlabs {
 		Block singleSlab = getModBlock(SLABCRAFT, singleSlabName);
 		Block doubleSlab = getModBlock(SLABCRAFT, doubleSlabName);
 		if (singleSlab != null && doubleSlab != null) {
-			KleeSlabs.registerSlabConverter(doubleSlab, new SimpleSlabConverter(singleSlab));
+			KleeSlabs.registerSlabConverter(doubleSlab, new SmartSlabConverter(singleSlab));
 		}
 	}
 

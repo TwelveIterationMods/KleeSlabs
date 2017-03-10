@@ -13,6 +13,7 @@ public abstract class CompatSlabs {
 	public static final String QUARK = "quark";
 	public static final String MISSING_PIECES = "missing_pieces";
 	public static final String SLABCRAFT = "slabcraftmod";
+	public static final String UNDERGROUNDBIOMES = "undergroundbiomes";
 
 	protected boolean isSilent;
 
