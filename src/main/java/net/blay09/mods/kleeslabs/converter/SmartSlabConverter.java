@@ -16,8 +16,8 @@ public class SmartSlabConverter implements SlabConverter {
 	@Override
 	public IBlockState getSingleSlab(IBlockState state, BlockSlab.EnumBlockHalf blockHalf) {
 		IBlockState newState = singleSlab.getDefaultState();
-		for(IProperty property : state.getPropertyNames()) {
-			if(newState.getPropertyNames().contains(property)) {
+		for(IProperty property : state.getPropertyKeys()) {
+			if(newState.getPropertyKeys().contains(property)) {
 				newState = newState.withProperty(property, state.getValue(property));
 			}
 		}

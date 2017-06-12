@@ -47,7 +47,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 import java.util.Random;
 
-@Mod(modid = "kleeslabs", name = "KleeSlabs", acceptedMinecraftVersions = "[1.11]")
+@Mod(modid = "kleeslabs", name = "KleeSlabs", acceptedMinecraftVersions = "[1.12]")
 public class KleeSlabs {
 
     public static final Logger logger = LogManager.getLogger();
@@ -147,7 +147,8 @@ public class KleeSlabs {
                 return;
             }
             BlockPos pos = event.getTarget().getBlockPos();
-            if(pos == null) { // BlockPos needs here @Nullable
+            //noinspection ConstantConditions
+            if(pos == null) {
                 return;
             }
             IBlockState target = event.getPlayer().world.getBlockState(pos);
@@ -163,10 +164,10 @@ public class KleeSlabs {
                 double offsetY = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) event.getPartialTicks();
                 double offsetZ = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) event.getPartialTicks();
                 AxisAlignedBB halfAABB = new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 0.5, pos.getZ() + 1);
-                if(event.getTarget().hitVec.yCoord - player.posY > 0.5) {
+                if(event.getTarget().hitVec.y - player.posY > 0.5) {
                     halfAABB = halfAABB.offset(0, 0.5, 0);
                 }
-                RenderGlobal.drawSelectionBoundingBox(halfAABB.expandXyz(0.002).offset(-offsetX, -offsetY, -offsetZ), 0f, 0f, 0f, 0.4f);
+                RenderGlobal.drawSelectionBoundingBox(halfAABB.grow(0.002).offset(-offsetX, -offsetY, -offsetZ), 0f, 0f, 0f, 0.4f);
                 GlStateManager.depthMask(true);
                 GlStateManager.enableTexture2D();
                 GlStateManager.disableBlend();
@@ -191,12 +192,12 @@ public class KleeSlabs {
             IBlockState dropState = slabConverter.getSingleSlab(state, BlockSlab.EnumBlockHalf.BOTTOM);
             if (!event.getWorld().isRemote && event.getPlayer().canHarvestBlock(event.getState()) && !event.getPlayer().capabilities.isCreativeMode) {
                 Item slabItem = Item.getItemFromBlock(dropState.getBlock());
-                if(slabItem != Items.field_190931_a) {
+                if(slabItem != Items.AIR) {
                     spawnItem(new ItemStack(slabItem, 1, dropState.getBlock().damageDropped(dropState)), event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ());
                 }
             }
             IBlockState newState;
-            if (hitVec != null && hitVec.yCoord < 0.5f) {
+            if (hitVec != null && hitVec.y < 0.5f) {
                 newState = slabConverter.getSingleSlab(state, BlockSlab.EnumBlockHalf.TOP);
             } else {
                 newState = slabConverter.getSingleSlab(state, BlockSlab.EnumBlockHalf.BOTTOM);
@@ -213,12 +214,12 @@ public class KleeSlabs {
         double zOffset = rand.nextFloat() * scale + 1f - scale * 0.5;
         EntityItem entityItem = new EntityItem(world, x + xOffset, y + yOffset, z + zOffset, itemStack);
         entityItem.setPickupDelay(10);
-        world.spawnEntityInWorld(entityItem);
+        world.spawnEntity(entityItem);
     }
 
     public static RayTraceResult rayTrace(EntityLivingBase entity, double length) {
         Vec3d startPos = new Vec3d(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ);
-        Vec3d endPos = startPos.addVector(entity.getLookVec().xCoord * length, entity.getLookVec().yCoord * length, entity.getLookVec().zCoord * length);
+        Vec3d endPos = startPos.addVector(entity.getLookVec().x * length, entity.getLookVec().y * length, entity.getLookVec().z * length);
         return entity.world.rayTraceBlocks(startPos, endPos);
     }
 
@@ -232,7 +233,7 @@ public class KleeSlabs {
         public void onRightClick(PlayerInteractEvent.LeftClickBlock event) {
             if(event.getSide() == Side.CLIENT) {
                 IBlockState state = event.getWorld().getBlockState(event.getPos());
-                event.getEntityPlayer().addChatComponentMessage(new TextComponentString("Mod: " + state.getBlock().getRegistryName().getResourceDomain() + " Name: " + state.getBlock().getRegistryName().getResourcePath()), false);
+                event.getEntityPlayer().sendStatusMessage(new TextComponentString("Mod: " + state.getBlock().getRegistryName().getResourceDomain() + " Name: " + state.getBlock().getRegistryName().getResourcePath()), false);
             }
         }
     }
