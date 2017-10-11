@@ -6,6 +6,8 @@ import net.minecraft.block.Block;
 
 public class BotaniaSlabs extends CompatSlabs {
 
+	// https://github.com/Vazkii/Botania/blob/master/src/main/java/vazkii/botania/common/block/ModFluffBlocks.java
+
 	public BotaniaSlabs() {
 		registerSlab("quartzSlabDarkHalf", "quartzSlabDarkFull");
 		registerSlab("quartzSlabManaHalf", "quartzSlabManaFull");
@@ -20,11 +22,6 @@ public class BotaniaSlabs extends CompatSlabs {
 		registerSlab("livingrock1Slab", "livingrock1SlabFull");
 		registerSlab("dreamwood0Slab", "dreamwood0SlabFull");
 		registerSlab("dreamwood1Slab", "dreamwood1SlabFull");
-		registerSlab("customBrick0Slab", "customBrick0SlabFull");
-		registerSlab("customBrick1Slab", "customBrick1SlabFull");
-		registerSlab("customBrick2Slab", "customBrick2SlabFull");
-		registerSlab("customBrick3Slab", "customBrick3SlabFull");
-		registerSlab("dirtPath0Slab", "dirtPath0SlabFull");
 		registerSlab("shimmerrock0Slab", "shimmerrock0SlabFull");
 		registerSlab("shimmerrock0Slab", "shimmerrock0SlabFull");
 		registerSlab("shimmerwoodPlanks0Slab", "shimmerwoodPlanks0SlabFull");
