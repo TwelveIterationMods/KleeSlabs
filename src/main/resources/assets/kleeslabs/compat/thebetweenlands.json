@@ -1,0 +1,12 @@
+{
+  "modid": "thebetweenlands",
+  "converter": "SmarterSlabConverter",
+  "slabs": [
+    "cragrock_slab",
+    "pitstone_slab",
+    "betweenstone_slab",
+    "smooth_pitstone_slab",
+    "tar_solid_slab",
+    "temple_brick_slab"
+  ]
+}

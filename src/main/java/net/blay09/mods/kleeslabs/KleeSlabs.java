@@ -1,25 +1,15 @@
 package net.blay09.mods.kleeslabs;
 
 import com.google.common.collect.Maps;
-import net.blay09.mods.kleeslabs.compat.CompatSlabs;
 import net.blay09.mods.kleeslabs.converter.SlabConverter;
-import net.blay09.mods.kleeslabs.converter.VanillaSlabConverter;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDoubleStoneSlab;
-import net.minecraft.block.BlockDoubleStoneSlabNew;
-import net.minecraft.block.BlockDoubleWoodSlab;
-import net.minecraft.block.BlockPurpurSlab;
 import net.minecraft.block.BlockSlab;
-import net.minecraft.block.BlockStoneSlab;
-import net.minecraft.block.BlockStoneSlabNew;
-import net.minecraft.block.BlockWoodSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -44,16 +34,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.util.Map;
 import java.util.Random;
 
-@Mod(modid = "kleeslabs", name = "KleeSlabs", acceptedMinecraftVersions = "[1.12]")
+@Mod(modid = KleeSlabs.MOD_ID, name = "KleeSlabs", acceptedMinecraftVersions = "[1.12]")
 public class KleeSlabs {
+
+    public static final String MOD_ID = "kleeslabs";
 
     public static final Logger logger = LogManager.getLogger();
     private static final Random rand = new Random();
 
-    private Configuration config;
+    public static Configuration config;
+    public static File configDir;
+
     private boolean requireSneak;
     private boolean invertSneak;
 
@@ -61,6 +56,8 @@ public class KleeSlabs {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        configDir = event.getModConfigurationDirectory();
+
         MinecraftForge.EVENT_BUS.register(this);
 
         config = new Configuration(event.getSuggestedConfigurationFile());
@@ -69,66 +66,12 @@ public class KleeSlabs {
         requireSneak = config.getBoolean("Require Sneaking", "general", false, "Set this to true to only break half a slab when the player is sneaking.");
         invertSneak = config.getBoolean("Invert Sneaking Check", "general", false, "If Require Sneaking is enabled. Set this to true to invert the sneaking check for breaking only half a slab.");
 
-//        MinecraftForge.EVENT_BUS.register(new SlabDebugger());
+        MinecraftForge.EVENT_BUS.register(new SlabDebugger());
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        registerSlabConverter(Blocks.DOUBLE_STONE_SLAB, new VanillaSlabConverter(Blocks.STONE_SLAB) {
-            @Override
-            public IBlockState withVariant(IBlockState state, IBlockState newState) {
-                return newState.withProperty(BlockStoneSlab.VARIANT, state.getValue(BlockDoubleStoneSlab.VARIANT));
-            }
-        });
-
-        registerSlabConverter(Blocks.DOUBLE_STONE_SLAB2, new VanillaSlabConverter(Blocks.STONE_SLAB2) {
-            @Override
-            public IBlockState withVariant(IBlockState state, IBlockState newState) {
-                return newState.withProperty(BlockStoneSlabNew.VARIANT, state.getValue(BlockDoubleStoneSlabNew.VARIANT));
-            }
-        });
-
-        registerSlabConverter(Blocks.DOUBLE_WOODEN_SLAB, new VanillaSlabConverter(Blocks.WOODEN_SLAB) {
-            @Override
-            public IBlockState withVariant(IBlockState state, IBlockState newState) {
-                return newState.withProperty(BlockWoodSlab.VARIANT, state.getValue(BlockDoubleWoodSlab.VARIANT));
-            }
-        });
-
-        registerSlabConverter(Blocks.PURPUR_DOUBLE_SLAB, new VanillaSlabConverter(Blocks.PURPUR_SLAB) {
-            @Override
-            public IBlockState withVariant(IBlockState state, IBlockState newState) {
-                return newState.withProperty(BlockPurpurSlab.Half.VARIANT, state.getValue(BlockPurpurSlab.Double.VARIANT));
-            }
-        });
-
-        if(config.getBoolean("Botania", "compat", true, "")) {
-            event.buildSoftDependProxy(CompatSlabs.BOTANIA, "net.blay09.mods.kleeslabs.compat.BotaniaSlabs");
-        }
-
-        if(config.getBoolean("Forestry", "compat", true, "")) {
-            event.buildSoftDependProxy(CompatSlabs.FORESTRY, "net.blay09.mods.kleeslabs.compat.ForestrySlabs");
-        }
-
-        if(config.getBoolean("BiomesOPlenty", "compat", true, "")) {
-            event.buildSoftDependProxy(CompatSlabs.BIOMES_O_PLENTY, "net.blay09.mods.kleeslabs.compat.BOPSlabs");
-        }
-
-        if(config.getBoolean("Quark", "compat", true, "")) {
-            event.buildSoftDependProxy(CompatSlabs.QUARK, "net.blay09.mods.kleeslabs.compat.QuarkSlabs");
-        }
-
-        if(config.getBoolean("Missing Pieces", "compat", true, "")) {
-            event.buildSoftDependProxy(CompatSlabs.MISSING_PIECES, "net.blay09.mods.kleeslabs.compat.MissingPiecesSlabs");
-        }
-
-        if(config.getBoolean("Slabcraft", "compat", true, "")) {
-            event.buildSoftDependProxy(CompatSlabs.SLABCRAFT, "net.blay09.mods.kleeslabs.compat.SlabcraftSlabs");
-        }
-
-        if(config.getBoolean("UndergroundBiomesContructs", "compat", true, "")) {
-            event.buildSoftDependProxy(CompatSlabs.UNDERGROUNDBIOMES, "net.blay09.mods.kleeslabs.compat.UndergroundBiomesSlabs");
-        }
+        JsonCompatLoader.loadCompat();
 
         if(config.hasChanged()) {
             config.save();

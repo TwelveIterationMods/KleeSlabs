@@ -1,0 +1,20 @@
+{
+  "modid": "missing_pieces",
+  "converter": "SmartSlabConverter",
+  "silent": true,
+  "pattern_replace": "$0_double",
+  "pattern_slabs": [
+    "stone_patt1_slab",
+    "stone_patt2_slab",
+    "stone_patt3_slab",
+    "stone_patt4_slab",
+    "stone_patt5_slab",
+    "stone_patt6_slab",
+    "stone_patt7_slab",
+    "stone_patt8_slab",
+    "stone_patt9_slab",
+    "stone_patt10_slab",
+    "stone_patt11_slab",
+    "stone_patt12_slab"
+  ]
+}

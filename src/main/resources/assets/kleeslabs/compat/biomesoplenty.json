@@ -1,0 +1,10 @@
+{
+  "modid": "biomesoplenty",
+  "converter": "SmartSlabConverter",
+  "pattern_replace": "double_$0",
+  "pattern_slabs": [
+    "wood_slab_0",
+    "wood_slab_1",
+    "other_slab"
+  ]
+}

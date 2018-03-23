@@ -1,0 +1,13 @@
+{
+  "modid": "minecraft",
+  "converter": "SmartSlabConverter",
+  "pattern_replace": "double_$0",
+  "pattern_slabs": [
+    "stone_slab",
+    "stone_slab2",
+    "wooden_slab"
+  ],
+  "mapped_slabs": {
+    "purpur_slab": "purpur_double_slab"
+  }
+}
