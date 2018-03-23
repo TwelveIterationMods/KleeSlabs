@@ -66,7 +66,7 @@ public class KleeSlabs {
         requireSneak = config.getBoolean("Require Sneaking", "general", false, "Set this to true to only break half a slab when the player is sneaking.");
         invertSneak = config.getBoolean("Invert Sneaking Check", "general", false, "If Require Sneaking is enabled. Set this to true to invert the sneaking check for breaking only half a slab.");
 
-        MinecraftForge.EVENT_BUS.register(new SlabDebugger());
+        // MinecraftForge.EVENT_BUS.register(new SlabDebugger());
     }
 
     @Mod.EventHandler
