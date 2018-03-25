@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -73,7 +74,7 @@ public class KleeSlabs {
     public void postInit(FMLPostInitializationEvent event) {
         JsonCompatLoader.loadCompat();
 
-        if(config.hasChanged()) {
+        if (config.hasChanged()) {
             config.save();
         }
     }
@@ -85,13 +86,13 @@ public class KleeSlabs {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onDrawBlockHighlight(DrawBlockHighlightEvent event) {
-        if(!requireSneak || event.getPlayer().isSneaking() != invertSneak) {
-            if(event.getTarget().typeOfHit != RayTraceResult.Type.BLOCK) {
+        if (!requireSneak || event.getPlayer().isSneaking() != invertSneak) {
+            if (event.getTarget().typeOfHit != RayTraceResult.Type.BLOCK) {
                 return;
             }
             BlockPos pos = event.getTarget().getBlockPos();
             //noinspection ConstantConditions
-            if(pos == null) {
+            if (pos == null) {
                 return;
             }
             IBlockState target = event.getPlayer().world.getBlockState(pos);
@@ -107,7 +108,7 @@ public class KleeSlabs {
                 double offsetY = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) event.getPartialTicks();
                 double offsetZ = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) event.getPartialTicks();
                 AxisAlignedBB halfAABB = new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 0.5, pos.getZ() + 1);
-                if(event.getTarget().hitVec.y - player.posY > 0.5) {
+                if (event.getTarget().hitVec.y - player.posY > 0.5) {
                     halfAABB = halfAABB.offset(0, 0.5, 0);
                 }
                 RenderGlobal.drawSelectionBoundingBox(halfAABB.grow(0.002).offset(-offsetX, -offsetY, -offsetZ), 0f, 0f, 0f, 0.4f);
@@ -121,21 +122,26 @@ public class KleeSlabs {
 
     @SubscribeEvent
     public void onBreakBlock(BlockEvent.BreakEvent event) {
+        if (event.getPlayer() instanceof FakePlayer) {
+            return;
+        }
+
         RayTraceResult mop = rayTrace(event.getPlayer(), 6);
         Vec3d hitVec = mop != null ? mop.hitVec : null;
-        if(hitVec != null) {
+        if (hitVec != null) {
             hitVec = hitVec.addVector(-event.getPos().getX(), -event.getPos().getY(), -event.getPos().getZ());
         }
         if (!requireSneak || event.getPlayer().isSneaking() != invertSneak) {
             IBlockState state = event.getState();
             SlabConverter slabConverter = slabMap.get(state.getBlock());
-            if(slabConverter == null) {
+            if (slabConverter == null) {
                 return;
             }
+
             IBlockState dropState = slabConverter.getSingleSlab(state, BlockSlab.EnumBlockHalf.BOTTOM);
             if (!event.getWorld().isRemote && event.getPlayer().canHarvestBlock(event.getState()) && !event.getPlayer().capabilities.isCreativeMode) {
                 Item slabItem = Item.getItemFromBlock(dropState.getBlock());
-                if(slabItem != Items.AIR) {
+                if (slabItem != Items.AIR) {
                     spawnItem(new ItemStack(slabItem, 1, dropState.getBlock().damageDropped(dropState)), event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ());
                 }
             }
@@ -172,9 +178,10 @@ public class KleeSlabs {
             event.getToolTip().add("Mod: " + event.getItemStack().getItem().getRegistryName().getResourceDomain());
             event.getToolTip().add("Name: " + event.getItemStack().getItem().getRegistryName().getResourcePath());
         }
+
         @SubscribeEvent
         public void onRightClick(PlayerInteractEvent.LeftClickBlock event) {
-            if(event.getSide() == Side.CLIENT) {
+            if (event.getSide() == Side.CLIENT) {
                 IBlockState state = event.getWorld().getBlockState(event.getPos());
                 event.getEntityPlayer().sendStatusMessage(new TextComponentString("Mod: " + state.getBlock().getRegistryName().getResourceDomain() + " Name: " + state.getBlock().getRegistryName().getResourcePath()), false);
             }
