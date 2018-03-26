@@ -4,8 +4,6 @@ import com.google.gson.*;
 import net.blay09.mods.kleeslabs.converter.SlabConverter;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.NonNullList;
@@ -131,8 +129,20 @@ public class JsonCompatLoader {
 
         JsonObject mappedSlabs = JsonUtils.getJsonObject(root, "mapped_slabs", EMPTY_OBJECT);
         for (Map.Entry<String, JsonElement> entry : mappedSlabs.entrySet()) {
-            Block singleSlab = parseBlock(modId, entry.getKey());
-            Block doubleSlab = parseBlock(modId, entry.getValue().getAsString());
+            String singleSlabName = entry.getKey();
+            Block singleSlab = parseBlock(modId, singleSlabName);
+            if (singleSlab == Blocks.AIR) {
+                KleeSlabs.logger.error("Slab {} could not be found.", singleSlabName);
+                continue;
+            }
+
+            String doubleSlabName = entry.getValue().getAsString();
+            Block doubleSlab = parseBlock(modId, doubleSlabName);
+            if (doubleSlab == Blocks.AIR) {
+                KleeSlabs.logger.error("Slab {} could not be found.", doubleSlabName);
+                continue;
+            }
+
             registerSlab(converterClass, singleSlab, doubleSlab);
         }
 
@@ -145,7 +155,17 @@ public class JsonCompatLoader {
             matcherSearch.reset(singleSlabName);
             String doubleSlabName = matcherSearch.replaceFirst(patternReplace);
             Block singleSlab = parseBlock(modId, singleSlabName);
+            if (singleSlab == Blocks.AIR) {
+                KleeSlabs.logger.error("Slab {} could not be found.", singleSlabName);
+                continue;
+            }
+
             Block doubleSlab = parseBlock(modId, doubleSlabName);
+            if (doubleSlab == Blocks.AIR) {
+                KleeSlabs.logger.error("Slab {} could not be found.", doubleSlabName);
+                continue;
+            }
+
             registerSlab(converterClass, singleSlab, doubleSlab);
         }
     }
