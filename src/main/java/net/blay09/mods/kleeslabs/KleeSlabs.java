@@ -134,7 +134,7 @@ public class KleeSlabs {
         if (!requireSneak || event.getPlayer().isSneaking() != invertSneak) {
             IBlockState state = event.getState();
             SlabConverter slabConverter = slabMap.get(state.getBlock());
-            if (slabConverter == null) {
+            if (slabConverter == null || !slabConverter.isDoubleSlab(state)) {
                 return;
             }
 
