@@ -1,98 +1,68 @@
-package net.blay09.mods.kleeslabs;
+package net.blay09.mods.kleeslabs.registry;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import net.blay09.mods.kleeslabs.KleeSlabs;
 import net.blay09.mods.kleeslabs.converter.SlabConverter;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
+import net.minecraft.resources.IResource;
+import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.JsonUtils;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ModContainer;
-import org.apache.commons.io.FilenameUtils;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.resource.IResourceType;
+import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Mod.EventBusSubscriber
-public class JsonCompatLoader {
+public class JsonCompatLoader implements ISelectiveResourceReloadListener {
 
     private static final Gson gson = new Gson();
-    private static final NonNullList<ItemStack> nonFoodRecipes = NonNullList.create();
 
-    public static boolean loadCompat() {
-        nonFoodRecipes.clear();
-        ModContainer mod = Loader.instance().getIndexedModList().get(KleeSlabs.MOD_ID);
-        return findConfigFiles() && CraftingHelper.findFiles(mod, "assets/" + KleeSlabs.MOD_ID + "/compat", (root) -> true, (root, file) -> {
-            String relative = root.relativize(file).toString();
-            if (!"json".equals(FilenameUtils.getExtension(file.toString())) || relative.startsWith("_")) {
-                return true;
-            }
-
-            String fileName = FilenameUtils.removeExtension(relative).replaceAll("\\\\", "/");
-            try (BufferedReader reader = Files.newBufferedReader(file)) {
+    @Override
+    public void onResourceManagerReload(IResourceManager resourceManager, Predicate<IResourceType> resourcePredicate) {
+        for (ResourceLocation resourceLocation : resourceManager.getAllResourceLocations("kleeslabs_compat", it -> it.endsWith(".json"))) {
+            try (IResource resource = resourceManager.getResource(resourceLocation)) {
+                InputStreamReader reader = new InputStreamReader(resource.getInputStream());
                 parse(reader);
-            } catch (JsonParseException e) {
-                KleeSlabs.logger.error("Parsing error loading compat {}", fileName, e);
-                return false;
             } catch (IOException e) {
-                KleeSlabs.logger.error("Couldn't read compat {}", fileName, e);
-                return false;
+                KleeSlabs.logger.error("Parsing error loading KleeSlabs Data File at {}", resourceLocation, e);
             }
-            return true;
-        }, true, true);
-    }
-
-    private static boolean findConfigFiles() {
-        File compatDir = new File(KleeSlabs.configDir, "KleeSlabsCompat");
-        if (!compatDir.exists()) {
-            KleeSlabs.logger.info("If you wish to setup additional KleeSlabs compatibility, create a folder called 'KleeSlabsCompat' in your config directory and place JSON files inside.");
-            return true;
         }
-
-        Path path = compatDir.toPath();
-        try {
-            Files.walk(path).filter(it -> it.toString().endsWith(".json")).forEach(it -> {
-                try (Reader reader = Files.newBufferedReader(it)) {
-                    parse(reader);
-                } catch (IOException e) {
-                    KleeSlabs.logger.error("Couldn't read compat {}", it, e);
-                }
-            });
-        } catch (IOException e) {
-            KleeSlabs.logger.error("Couldn't walk compat dir", e);
-            return false;
-        }
-
-        return true;
     }
 
     private static final JsonObject EMPTY_OBJECT = new JsonObject();
     private static final JsonArray EMPTY_ARRAY = new JsonArray();
 
-    public static void parse(String json) {
-        parse(gson.fromJson(json, JsonObject.class));
-    }
-
-    public static void parse(Reader reader) {
+    private static void parse(Reader reader) {
         JsonObject json = JsonUtils.fromJson(gson, reader, JsonObject.class);
         if (json != null) {
             parse(json);
         }
     }
 
+    private static boolean isCompatEnabled(String modId) {
+        return true;
+//        return KleeSlabs.config.getBoolean(modId, "compat", true, ""); TODO
+    }
+
     private static void parse(JsonObject root) {
         String modId = JsonUtils.getString(root, "modid");
-        if (!modId.equals("minecraft") && !Loader.isModLoaded(modId) && KleeSlabs.config.getBoolean(modId, "compat", true, "")) {
+        if ((!modId.equals("minecraft") && !ModList.get().isLoaded(modId)) || !isCompatEnabled(modId)) {
             return;
         }
 
@@ -174,7 +144,7 @@ public class JsonCompatLoader {
         try {
             Constructor constructor = converterClass.getConstructor(Block.class);
             SlabConverter converter = (SlabConverter) constructor.newInstance(singleSlab);
-            KleeSlabs.registerSlabConverter(doubleSlab, converter);
+            SlabRegistry.registerSlabConverter(doubleSlab, converter);
         } catch (NoSuchMethodException e) {
             KleeSlabs.logger.error("Slab converter class does not have a constructor that takes a Block argument: {}", converterClass);
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
@@ -188,7 +158,9 @@ public class JsonCompatLoader {
             modId = name.substring(0, colon);
             name = name.substring(colon + 1);
         }
-        return Block.REGISTRY.getObject(new ResourceLocation(modId, name));
+
+        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(modId, name));
+        return block != null ? block : Blocks.AIR;
     }
 
 }

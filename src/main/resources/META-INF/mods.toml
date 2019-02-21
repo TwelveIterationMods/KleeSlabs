@@ -1,0 +1,14 @@
+modLoader="javafml"
+loaderVersion="[24,)"
+issueTrackerURL="https://github.com/blay09/KleeSlabs/issues"
+displayURL="https://minecraft.curseforge.com/projects/kleeslabs"
+authors="BlayTheNinth"
+credits="BlayTheNinth and Kleetho on Twitch"
+
+[[mods]]
+modId="kleeslabs"
+version="${file.jarVersion}"
+displayName="KleeSlabs"
+description='''
+Allows only breaking one half of a double slab.
+'''
