@@ -2,7 +2,7 @@ package net.blay09.mods.kleeslabs;
 
 import net.blay09.mods.kleeslabs.registry.JsonCompatLoader;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.resources.IReloadableResourceMannager;
+import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
