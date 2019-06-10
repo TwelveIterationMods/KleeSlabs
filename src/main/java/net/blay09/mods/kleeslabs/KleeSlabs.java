@@ -26,7 +26,6 @@ public class KleeSlabs {
 
     public KleeSlabs() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupCommon);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
         MinecraftForge.EVENT_BUS.addListener(this::setupServer);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, KleeSlabsConfig.clientSpec);
@@ -34,13 +33,6 @@ public class KleeSlabs {
 
     public void setupCommon(FMLCommonSetupEvent event) {
         DeferredWorkQueue.runLater(NetworkHandler::init);
-    }
-
-    public void setupClient(FMLClientSetupEvent event) {
-//        IResourceManager resourceManager = event.getMinecraftSupplier().get().getResourceManager();
-//        if (resourceManager instanceof IReloadableResourceManager) {
-//            ((IReloadableResourceManager) resourceManager).addReloadListener(new JsonCompatLoader());
-//        }
     }
 
     public void setupServer(FMLServerAboutToStartEvent event) {
