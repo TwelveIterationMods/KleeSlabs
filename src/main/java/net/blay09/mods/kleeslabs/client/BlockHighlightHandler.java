@@ -1,12 +1,12 @@
 package net.blay09.mods.kleeslabs.client;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.blay09.mods.kleeslabs.KleeSlabs;
 import net.blay09.mods.kleeslabs.converter.SlabConverter;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -34,7 +34,7 @@ public class BlockHighlightHandler {
             return;
         }
 
-        IBlockState target = event.getPlayer().world.getBlockState(pos);
+        BlockState target = event.getPlayer().world.getBlockState(pos);
         SlabConverter slabConverter = SlabRegistry.getSlabConverter(target.getBlock());
         if (slabConverter != null) {
             GlStateManager.enableBlend();
@@ -42,7 +42,7 @@ public class BlockHighlightHandler {
             GlStateManager.lineWidth(2f);
             GlStateManager.disableTexture2D();
             GlStateManager.depthMask(false);
-            EntityPlayer player = event.getPlayer();
+            PlayerEntity player = event.getPlayer();
             double offsetX = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) event.getPartialTicks();
             double offsetY = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) event.getPartialTicks();
             double offsetZ = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) event.getPartialTicks();

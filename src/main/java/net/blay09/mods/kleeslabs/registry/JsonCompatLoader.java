@@ -1,16 +1,12 @@
 package net.blay09.mods.kleeslabs.registry;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import net.blay09.mods.kleeslabs.KleeSlabs;
 import net.blay09.mods.kleeslabs.converter.SlabConverter;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
@@ -24,6 +20,7 @@ import java.io.Reader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,30 +42,24 @@ public class JsonCompatLoader implements ISelectiveResourceReloadListener {
         }
     }
 
-    private static final JsonObject EMPTY_OBJECT = new JsonObject();
-    private static final JsonArray EMPTY_ARRAY = new JsonArray();
-
     private static void parse(Reader reader) {
-        JsonObject json = JsonUtils.fromJson(gson, reader, JsonObject.class);
-        if (json != null) {
-            parse(json);
-        }
+        load(gson.fromJson(reader, JsonCompatDataSlab.class));
     }
 
     private static boolean isCompatEnabled(String modId) {
         return true;
-//        return KleeSlabs.config.getBoolean(modId, "compat", true, ""); TODO
+//        return KleeSlabs.config.getBoolean(modId, "compat", true, ""); TODO 1.14 Add disabledCompat array field
     }
 
-    private static void parse(JsonObject root) {
-        String modId = JsonUtils.getString(root, "modid");
+    private static void load(JsonCompatDataSlab data) {
+        String modId = data.getModId();
         if ((!modId.equals("minecraft") && !ModList.get().isLoaded(modId)) || !isCompatEnabled(modId)) {
             return;
         }
 
-        boolean isSilent = JsonUtils.getBoolean(root, "silent", false);
+        boolean isSilent = data.isSilent();
 
-        String converterName = JsonUtils.getString(root, "converter");
+        String converterName = data.getConverter();
         Class<?> converterClass;
         try {
             converterClass = Class.forName("net.blay09.mods.kleeslabs.converter." + converterName);
@@ -86,57 +77,62 @@ public class JsonCompatLoader implements ISelectiveResourceReloadListener {
             return;
         }
 
-        JsonArray slabs = JsonUtils.getJsonArray(root, "slabs", EMPTY_ARRAY);
-        for (JsonElement element : slabs) {
-            String slabName = element.getAsString();
-            Block slab = parseBlock(modId, slabName);
-            if (slab != Blocks.AIR) {
-                registerSlab(converterClass, slab, slab);
-            } else if (!isSilent) {
-                KleeSlabs.logger.error("Slab {} could not be found.", slabName);
+        Set<String> slabs = data.getSlabs();
+        if (slabs != null) {
+            for (String slabName : slabs) {
+                Block slab = parseBlock(modId, slabName);
+                if (slab != Blocks.AIR) {
+                    registerSlab(converterClass, slab, slab);
+                } else if (!isSilent) {
+                    KleeSlabs.logger.error("Slab {} could not be found.", slabName);
+                }
             }
         }
 
-        JsonObject mappedSlabs = JsonUtils.getJsonObject(root, "mapped_slabs", EMPTY_OBJECT);
-        for (Map.Entry<String, JsonElement> entry : mappedSlabs.entrySet()) {
-            String singleSlabName = entry.getKey();
-            Block singleSlab = parseBlock(modId, singleSlabName);
-            if (singleSlab == Blocks.AIR) {
-                KleeSlabs.logger.error("Slab {} could not be found.", singleSlabName);
-                continue;
-            }
+        Map<String, String> mappedSlabs = data.getMappedSlabs();
+        if (mappedSlabs != null) {
+            for (Map.Entry<String, String> entry : mappedSlabs.entrySet()) {
+                String singleSlabName = entry.getKey();
+                Block singleSlab = parseBlock(modId, singleSlabName);
+                if (singleSlab == Blocks.AIR) {
+                    KleeSlabs.logger.error("Slab {} could not be found.", singleSlabName);
+                    continue;
+                }
 
-            String doubleSlabName = entry.getValue().getAsString();
-            Block doubleSlab = parseBlock(modId, doubleSlabName);
-            if (doubleSlab == Blocks.AIR) {
-                KleeSlabs.logger.error("Slab {} could not be found.", doubleSlabName);
-                continue;
-            }
+                String doubleSlabName = entry.getValue();
+                Block doubleSlab = parseBlock(modId, doubleSlabName);
+                if (doubleSlab == Blocks.AIR) {
+                    KleeSlabs.logger.error("Slab {} could not be found.", doubleSlabName);
+                    continue;
+                }
 
-            registerSlab(converterClass, singleSlab, doubleSlab);
+                registerSlab(converterClass, singleSlab, doubleSlab);
+            }
         }
 
-        Pattern patternSearch = Pattern.compile(JsonUtils.getString(root, "pattern_search", ".+"));
+        String pattern = data.getPatternSearch() != null ? data.getPatternSearch() : ".+";
+        Pattern patternSearch = Pattern.compile(pattern);
         Matcher matcherSearch = patternSearch.matcher("");
-        String patternReplace = JsonUtils.getString(root, "pattern_replace", "$0_double");
-        JsonArray patternSlabs = JsonUtils.getJsonArray(root, "pattern_slabs", EMPTY_ARRAY);
-        for (JsonElement element : patternSlabs) {
-            String singleSlabName = element.getAsString();
-            matcherSearch.reset(singleSlabName);
-            String doubleSlabName = matcherSearch.replaceFirst(patternReplace);
-            Block singleSlab = parseBlock(modId, singleSlabName);
-            if (singleSlab == Blocks.AIR) {
-                KleeSlabs.logger.error("Slab {} could not be found.", singleSlabName);
-                continue;
-            }
+        String patternReplace = data.getPatternReplace() != null ? data.getPatternReplace() : "$0_double";
+        Set<String> patternSlabs = data.getPatternSlabs();
+        if (patternSlabs != null) {
+            for (String singleSlabName : patternSlabs) {
+                matcherSearch.reset(singleSlabName);
+                String doubleSlabName = matcherSearch.replaceFirst(patternReplace);
+                Block singleSlab = parseBlock(modId, singleSlabName);
+                if (singleSlab == Blocks.AIR) {
+                    KleeSlabs.logger.error("Slab {} could not be found.", singleSlabName);
+                    continue;
+                }
 
-            Block doubleSlab = parseBlock(modId, doubleSlabName);
-            if (doubleSlab == Blocks.AIR) {
-                KleeSlabs.logger.error("Slab {} could not be found.", doubleSlabName);
-                continue;
-            }
+                Block doubleSlab = parseBlock(modId, doubleSlabName);
+                if (doubleSlab == Blocks.AIR) {
+                    KleeSlabs.logger.error("Slab {} could not be found.", doubleSlabName);
+                    continue;
+                }
 
-            registerSlab(converterClass, singleSlab, doubleSlab);
+                registerSlab(converterClass, singleSlab, doubleSlab);
+            }
         }
     }
 

@@ -1,7 +1,7 @@
 package net.blay09.mods.kleeslabs;
 
 import net.blay09.mods.kleeslabs.registry.JsonCompatLoader;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.resources.IResourceManager;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -15,6 +15,8 @@ import org.apache.logging.log4j.Logger;
 
 @Mod(KleeSlabs.MOD_ID)
 public class KleeSlabs {
+
+    // TODO Sync the KleeSlabs data to the client on login
 
     public static final String MOD_ID = "kleeslabs";
 
@@ -37,7 +39,7 @@ public class KleeSlabs {
         }
     }
 
-    public static boolean isPlayerKleeSlabbing(EntityPlayer player) {
+    public static boolean isPlayerKleeSlabbing(PlayerEntity player) {
         return !KleeSlabsConfig.CLIENT.requireSneak.get() || player.isSneaking() != KleeSlabsConfig.CLIENT.invertSneak.get();
     }
 }

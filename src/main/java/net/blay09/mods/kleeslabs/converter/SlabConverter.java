@@ -1,14 +1,14 @@
 package net.blay09.mods.kleeslabs.converter;
 
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.state.properties.SlabType;
 
 public interface SlabConverter {
 
-	IBlockState getSingleSlab(IBlockState state, SlabType slabType);
+    BlockState getSingleSlab(BlockState state, SlabType slabType);
 
-	default boolean isDoubleSlab(IBlockState state) {
-		return true;
-	}
+    default boolean isDoubleSlab(BlockState state) {
+        return true;
+    }
 
 }

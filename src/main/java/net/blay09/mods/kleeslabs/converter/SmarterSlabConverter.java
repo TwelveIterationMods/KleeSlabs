@@ -1,7 +1,7 @@
 package net.blay09.mods.kleeslabs.converter;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.state.IProperty;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.IStringSerializable;
@@ -17,8 +17,8 @@ public class SmarterSlabConverter implements SlabConverter {
     }
 
     @Override
-    public IBlockState getSingleSlab(IBlockState state, SlabType slabType) {
-        IBlockState newState = slabBlock.getDefaultState();
+    public BlockState getSingleSlab(BlockState state, SlabType slabType) {
+        BlockState newState = slabBlock.getDefaultState();
         for (IProperty<?> property : state.getProperties()) {
             if (property.getName().equals("half")) {
                 newState = getHalfBlockState(newState, property, slabType);
@@ -31,7 +31,7 @@ public class SmarterSlabConverter implements SlabConverter {
     }
 
     @Override
-    public boolean isDoubleSlab(IBlockState state) {
+    public boolean isDoubleSlab(BlockState state) {
         for (IProperty<?> property : state.getProperties()) {
             if (property.getName().equals("half")) {
                 IStringSerializable value = (IStringSerializable) state.get(property);
@@ -44,11 +44,11 @@ public class SmarterSlabConverter implements SlabConverter {
         return false;
     }
 
-    private <T extends Comparable<T>> IBlockState copyProperty(IBlockState sourceState, IBlockState targetState, IProperty<T> property) {
+    private <T extends Comparable<T>> BlockState copyProperty(BlockState sourceState, BlockState targetState, IProperty<T> property) {
         return targetState.with(property, sourceState.get(property));
     }
 
-    private <T extends Comparable<T>> IBlockState getHalfBlockState(IBlockState state, IProperty<T> property, SlabType slabType) {
+    private <T extends Comparable<T>> BlockState getHalfBlockState(BlockState state, IProperty<T> property, SlabType slabType) {
         Optional<T> parsedValue = Optional.empty();
         if (slabType == SlabType.BOTTOM) {
             parsedValue = property.parseValue("bottom");
