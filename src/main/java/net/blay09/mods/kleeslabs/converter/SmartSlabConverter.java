@@ -25,6 +25,11 @@ public class SmartSlabConverter implements SlabConverter {
         return newState.with(BlockStateProperties.SLAB_TYPE, slabType);
     }
 
+    @Override
+    public boolean isDoubleSlab(BlockState state) {
+        return state.get(BlockStateProperties.SLAB_TYPE) == SlabType.DOUBLE;
+    }
+
     private <T extends Comparable<T>> BlockState copyProperty(BlockState sourceState, BlockState targetState, IProperty<T> property) {
         return targetState.with(property, sourceState.get(property));
     }

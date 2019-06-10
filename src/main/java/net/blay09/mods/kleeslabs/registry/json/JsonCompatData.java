@@ -1,4 +1,4 @@
-package net.blay09.mods.kleeslabs.registry;
+package net.blay09.mods.kleeslabs.registry.json;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Set;
 
-public class JsonCompatDataSlab {
+public class JsonCompatData {
     @SerializedName("modid")
     private String modId;
 

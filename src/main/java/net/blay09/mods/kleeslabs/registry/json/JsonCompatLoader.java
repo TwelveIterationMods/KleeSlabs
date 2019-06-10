@@ -1,8 +1,11 @@
-package net.blay09.mods.kleeslabs.registry;
+package net.blay09.mods.kleeslabs.registry.json;
 
 import com.google.gson.Gson;
 import net.blay09.mods.kleeslabs.KleeSlabs;
+import net.blay09.mods.kleeslabs.KleeSlabsConfig;
 import net.blay09.mods.kleeslabs.converter.SlabConverter;
+import net.blay09.mods.kleeslabs.registry.SlabRegistry;
+import net.blay09.mods.kleeslabs.registry.SlabRegistryData;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.resources.IResource;
@@ -14,11 +17,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.resource.IResourceType;
 import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -31,11 +33,11 @@ public class JsonCompatLoader implements ISelectiveResourceReloadListener {
     private static final Gson gson = new Gson();
 
     @Override
-    public void onResourceManagerReload(IResourceManager resourceManager, Predicate<IResourceType> resourcePredicate) {
+    public void onResourceManagerReload(IResourceManager resourceManager, @Nullable Predicate<IResourceType> resourcePredicate) {
         for (ResourceLocation resourceLocation : resourceManager.getAllResourceLocations("kleeslabs_compat", it -> it.endsWith(".json"))) {
             try (IResource resource = resourceManager.getResource(resourceLocation)) {
                 InputStreamReader reader = new InputStreamReader(resource.getInputStream());
-                parse(reader);
+                load(gson.fromJson(reader, JsonCompatData.class));
             } catch (IOException e) {
                 KleeSlabs.logger.error("Parsing error loading KleeSlabs Data File at {}", resourceLocation, e);
             }
@@ -43,15 +45,15 @@ public class JsonCompatLoader implements ISelectiveResourceReloadListener {
     }
 
     private static void parse(Reader reader) {
-        load(gson.fromJson(reader, JsonCompatDataSlab.class));
+        load(gson.fromJson(reader, JsonCompatData.class));
     }
 
     private static boolean isCompatEnabled(String modId) {
-        return true;
-//        return KleeSlabs.config.getBoolean(modId, "compat", true, ""); TODO 1.14 Add disabledCompat array field
+        return !KleeSlabsConfig.CLIENT.disabledCompat.get().contains(modId);
     }
 
-    private static void load(JsonCompatDataSlab data) {
+    @SuppressWarnings("unchecked")
+    private static void load(JsonCompatData data) {
         String modId = data.getModId();
         if ((!modId.equals("minecraft") && !ModList.get().isLoaded(modId)) || !isCompatEnabled(modId)) {
             return;
@@ -60,12 +62,12 @@ public class JsonCompatLoader implements ISelectiveResourceReloadListener {
         boolean isSilent = data.isSilent();
 
         String converterName = data.getConverter();
-        Class<?> converterClass;
+        Class<? extends SlabConverter> converterClass;
         try {
-            converterClass = Class.forName("net.blay09.mods.kleeslabs.converter." + converterName);
+            converterClass = (Class<? extends SlabConverter>) Class.forName("net.blay09.mods.kleeslabs.converter." + converterName);
         } catch (ClassNotFoundException ignored) {
             try {
-                converterClass = Class.forName(converterName);
+                converterClass = (Class<? extends SlabConverter>) Class.forName(converterName);
             } catch (ClassNotFoundException e) {
                 KleeSlabs.logger.error("Slab converter class was not found: {}", converterName);
                 return;
@@ -82,7 +84,7 @@ public class JsonCompatLoader implements ISelectiveResourceReloadListener {
             for (String slabName : slabs) {
                 Block slab = parseBlock(modId, slabName);
                 if (slab != Blocks.AIR) {
-                    registerSlab(converterClass, slab, slab);
+                    SlabRegistry.registerSlab(new SlabRegistryData(converterClass, slab, slab));
                 } else if (!isSilent) {
                     KleeSlabs.logger.error("Slab {} could not be found.", slabName);
                 }
@@ -106,7 +108,7 @@ public class JsonCompatLoader implements ISelectiveResourceReloadListener {
                     continue;
                 }
 
-                registerSlab(converterClass, singleSlab, doubleSlab);
+                SlabRegistry.registerSlab(new SlabRegistryData(converterClass, singleSlab, doubleSlab));
             }
         }
 
@@ -131,20 +133,8 @@ public class JsonCompatLoader implements ISelectiveResourceReloadListener {
                     continue;
                 }
 
-                registerSlab(converterClass, singleSlab, doubleSlab);
+                SlabRegistry.registerSlab(new SlabRegistryData(converterClass, singleSlab, doubleSlab));
             }
-        }
-    }
-
-    private static void registerSlab(Class<?> converterClass, Block singleSlab, Block doubleSlab) {
-        try {
-            Constructor constructor = converterClass.getConstructor(Block.class);
-            SlabConverter converter = (SlabConverter) constructor.newInstance(singleSlab);
-            SlabRegistry.registerSlabConverter(doubleSlab, converter);
-        } catch (NoSuchMethodException e) {
-            KleeSlabs.logger.error("Slab converter class does not have a constructor that takes a Block argument: {}", converterClass);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
-            KleeSlabs.logger.error("Slab converter class constructor invocation failed: {}", converterClass, e);
         }
     }
 

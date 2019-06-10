@@ -5,56 +5,62 @@ import net.blay09.mods.kleeslabs.KleeSlabs;
 import net.blay09.mods.kleeslabs.converter.SlabConverter;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.lwjgl.opengl.GL11;
 
 @Mod.EventBusSubscriber({Dist.CLIENT})
 public class BlockHighlightHandler {
 
     @SubscribeEvent
     public static void onDrawBlockHighlight(DrawBlockHighlightEvent event) {
-        if (!KleeSlabs.isPlayerKleeSlabbing(event.getPlayer())) {
+        ClientPlayerEntity player = Minecraft.getInstance().player;
+        if (!KleeSlabs.isPlayerKleeSlabbing(player)) {
             return;
         }
 
-        if (event.getTarget().type != RayTraceResult.Type.BLOCK) {
+        if (event.getTarget().getType() != RayTraceResult.Type.BLOCK) {
             return;
         }
 
-        BlockPos pos = event.getTarget().getBlockPos();
-        //noinspection ConstantConditions missing @Nullable
-        if (pos == null) {
-            return;
-        }
-
-        BlockState target = event.getPlayer().world.getBlockState(pos);
+        BlockPos pos = ((BlockRayTraceResult) event.getTarget()).getPos();
+        BlockState target = player.world.getBlockState(pos);
         SlabConverter slabConverter = SlabRegistry.getSlabConverter(target.getBlock());
         if (slabConverter != null) {
             GlStateManager.enableBlend();
             GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-            GlStateManager.lineWidth(2f);
-            GlStateManager.disableTexture2D();
+            GlStateManager.lineWidth(Math.max(2.5f, (float) Minecraft.getInstance().mainWindow.getFramebufferWidth() / 1920f * 2.5f));
+            GlStateManager.disableTexture();
             GlStateManager.depthMask(false);
-            PlayerEntity player = event.getPlayer();
-            double offsetX = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) event.getPartialTicks();
-            double offsetY = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) event.getPartialTicks();
-            double offsetZ = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) event.getPartialTicks();
+            GlStateManager.matrixMode(5889);
+            GlStateManager.pushMatrix();
+            GlStateManager.scalef(1f, 1f, 0.999f);
+
+            double offsetX = event.getInfo().func_216785_c().x;
+            double offsetY = event.getInfo().func_216785_c().y;
+            double offsetZ = event.getInfo().func_216785_c().z;
             AxisAlignedBB halfAABB = new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 0.5, pos.getZ() + 1);
-            if (event.getTarget().hitVec.y - player.posY > 0.5) {
+            if (event.getTarget().getHitVec().y - (double) pos.getY() > 0.5) {
                 halfAABB = halfAABB.offset(0, 0.5, 0);
             }
 
             WorldRenderer.drawSelectionBoundingBox(halfAABB.grow(0.002).offset(-offsetX, -offsetY, -offsetZ), 0f, 0f, 0f, 0.4f);
+
+            GlStateManager.popMatrix();
+            GlStateManager.matrixMode(5888);
             GlStateManager.depthMask(true);
-            GlStateManager.enableTexture2D();
+            GlStateManager.enableTexture();
             GlStateManager.disableBlend();
+
             event.setCanceled(true);
         }
     }
