@@ -45,9 +45,9 @@ public class BlockHighlightHandler {
             GlStateManager.pushMatrix();
             GlStateManager.scalef(1f, 1f, 0.999f);
 
-            double offsetX = event.getInfo().func_216785_c().x;
-            double offsetY = event.getInfo().func_216785_c().y;
-            double offsetZ = event.getInfo().func_216785_c().z;
+            double offsetX = event.getInfo().getProjectedView().x;
+            double offsetY = event.getInfo().getProjectedView().y;
+            double offsetZ = event.getInfo().getProjectedView().z;
             AxisAlignedBB halfAABB = new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 0.5, pos.getZ() + 1);
             if (event.getTarget().getHitVec().y - (double) pos.getY() > 0.5) {
                 halfAABB = halfAABB.offset(0, 0.5, 0);
