@@ -1,16 +1,17 @@
 {
   "modid": "botania",
   "converter": "SimpleSlabConverter",
-  "pattern_search": "(.+)(?:Half)?",
-  "pattern_replace": "$1Full",
+  "mapped_slabs": {
+    "quartzSlabDarkHalf": "quartzSlabDarkFull",
+    "quartzSlabManaHalf": "quartzSlabManaFull",
+    "quartzSlabBlazeHalf": "quartzSlabBlazeFull",
+    "quartzSlabLavenderHalf": "quartzSlabLavenderFull",
+    "quartzSlabRedHalf": "quartzSlabRedFull",
+    "quartzSlabElfHalf": "quartzSlabElfFull",
+    "quartzSlabSunnyHalf": "quartzSlabSunnyFull"
+  },
+  "pattern_replace": "$0Full",
   "pattern_slabs": [
-    "quartzSlabDarkHalf",
-    "quartzSlabManaHalf",
-    "quartzSlabBlazeHalf",
-    "quartzSlabLavenderHalf",
-    "quartzSlabRedHalf",
-    "quartzSlabElfHalf",
-    "quartzSlabSunnyHalf",
     "livingwood0Slab",
     "livingwood1Slab",
     "livingrock0Slab",
