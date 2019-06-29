@@ -108,7 +108,7 @@ public class KleeSlabs {
                 double offsetY = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) event.getPartialTicks();
                 double offsetZ = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) event.getPartialTicks();
                 AxisAlignedBB halfAABB = new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 0.5, pos.getZ() + 1);
-                if (event.getTarget().hitVec.y - player.posY > 0.5) {
+                if (event.getTarget().hitVec.y - (double) pos.getY() > 0.5) {
                     halfAABB = halfAABB.offset(0, 0.5, 0);
                 }
                 RenderGlobal.drawSelectionBoundingBox(halfAABB.grow(0.002).offset(-offsetX, -offsetY, -offsetZ), 0f, 0f, 0f, 0.4f);
