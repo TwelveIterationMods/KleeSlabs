@@ -26,7 +26,7 @@ public class KleeSlabs {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupCommon);
         MinecraftForge.EVENT_BUS.addListener(this::setupServer);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, KleeSlabsConfig.clientSpec);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, KleeSlabsConfig.commonSpec);
     }
 
     public void setupCommon(FMLCommonSetupEvent event) {
@@ -39,6 +39,6 @@ public class KleeSlabs {
     }
 
     public static boolean isPlayerKleeSlabbing(PlayerEntity player) {
-        return !KleeSlabsConfig.CLIENT.requireSneak.get() || player.isSneaking() != KleeSlabsConfig.CLIENT.invertSneak.get();
+        return !KleeSlabsConfig.COMMON.requireSneak.get() || player.isSneaking() != KleeSlabsConfig.COMMON.invertSneak.get();
     }
 }

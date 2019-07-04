@@ -49,7 +49,7 @@ public class JsonCompatLoader implements ISelectiveResourceReloadListener {
     }
 
     private static boolean isCompatEnabled(String modId) {
-        return !KleeSlabsConfig.CLIENT.disabledCompat.get().contains(modId);
+        return !KleeSlabsConfig.COMMON.disabledCompat.get().contains(modId);
     }
 
     @SuppressWarnings("unchecked")

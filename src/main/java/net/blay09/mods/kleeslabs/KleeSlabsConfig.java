@@ -7,13 +7,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class KleeSlabsConfig {
-    public static class Client {
+    public static class Common {
         public final ForgeConfigSpec.BooleanValue requireSneak;
         public final ForgeConfigSpec.BooleanValue invertSneak;
         public final ForgeConfigSpec.ConfigValue<List<String>> disabledCompat;
 
-        Client(ForgeConfigSpec.Builder builder) {
-            builder.comment("Client only settings").push("client");
+        Common(ForgeConfigSpec.Builder builder) {
+            builder.comment("KleeSlabs settings").push("common");
 
             requireSneak = builder
                     .comment("Set this to true to only break half a slab when the player is sneaking.")
@@ -32,13 +32,13 @@ public class KleeSlabsConfig {
         }
     }
 
-    static final ForgeConfigSpec clientSpec;
-    public static final KleeSlabsConfig.Client CLIENT;
+    static final ForgeConfigSpec commonSpec;
+    public static final Common COMMON;
 
     static {
-        final Pair<KleeSlabsConfig.Client, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(KleeSlabsConfig.Client::new);
-        clientSpec = specPair.getRight();
-        CLIENT = specPair.getLeft();
+        final Pair<Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Common::new);
+        commonSpec = specPair.getRight();
+        COMMON = specPair.getLeft();
     }
 
 }
