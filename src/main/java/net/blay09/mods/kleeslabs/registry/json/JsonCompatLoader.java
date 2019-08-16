@@ -10,30 +10,27 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
+import net.minecraft.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.resource.IResourceType;
-import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Mod.EventBusSubscriber
-public class JsonCompatLoader implements ISelectiveResourceReloadListener {
+public class JsonCompatLoader implements IResourceManagerReloadListener {
 
     private static final Gson gson = new Gson();
 
     @Override
-    public void onResourceManagerReload(IResourceManager resourceManager, @Nullable Predicate<IResourceType> resourcePredicate) {
+    public void onResourceManagerReload(IResourceManager resourceManager) {
         for (ResourceLocation resourceLocation : resourceManager.getAllResourceLocations("kleeslabs_compat", it -> it.endsWith(".json"))) {
             try (IResource resource = resourceManager.getResource(resourceLocation)) {
                 InputStreamReader reader = new InputStreamReader(resource.getInputStream());

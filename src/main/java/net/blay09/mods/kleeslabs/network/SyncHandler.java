@@ -4,9 +4,9 @@ import net.blay09.mods.kleeslabs.KleeSlabs;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
 import net.blay09.mods.kleeslabs.registry.SlabRegistryData;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 import java.util.ArrayList;
