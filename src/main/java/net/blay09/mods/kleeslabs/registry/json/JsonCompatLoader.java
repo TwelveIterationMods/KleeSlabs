@@ -35,14 +35,10 @@ public class JsonCompatLoader implements IResourceManagerReloadListener {
             try (IResource resource = resourceManager.getResource(resourceLocation)) {
                 InputStreamReader reader = new InputStreamReader(resource.getInputStream());
                 load(gson.fromJson(reader, JsonCompatData.class));
-            } catch (IOException e) {
+            } catch (Exception e) {
                 KleeSlabs.logger.error("Parsing error loading KleeSlabs Data File at {}", resourceLocation, e);
             }
         }
-    }
-
-    private static void parse(Reader reader) {
-        load(gson.fromJson(reader, JsonCompatData.class));
     }
 
     private static boolean isCompatEnabled(String modId) {
