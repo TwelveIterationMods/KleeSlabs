@@ -26,7 +26,7 @@ class SlabDebugger {
             ResourceLocation registryName = state.getBlock().getRegistryName();
             if (registryName != null) {
                 StringTextComponent message = new StringTextComponent("Mod: " + registryName.getNamespace() + " Name: " + registryName.getPath());
-                event.getEntityPlayer().sendStatusMessage(message, false);
+                event.getPlayer().sendStatusMessage(message, false);
             }
         }
     }

@@ -10,21 +10,19 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.lwjgl.opengl.GL11;
 
 @Mod.EventBusSubscriber({Dist.CLIENT})
 public class BlockHighlightHandler {
 
     @SubscribeEvent
-    public static void onDrawBlockHighlight(DrawBlockHighlightEvent event) {
+    public static void onDrawBlockHighlight(DrawHighlightEvent.HighlightBlock event) {
         ClientPlayerEntity player = Minecraft.getInstance().player;
-        if (!KleeSlabs.isPlayerKleeSlabbing(player)) {
+        if (player == null || !KleeSlabs.isPlayerKleeSlabbing(player)) {
             return;
         }
 
@@ -32,13 +30,13 @@ public class BlockHighlightHandler {
             return;
         }
 
-        BlockPos pos = ((BlockRayTraceResult) event.getTarget()).getPos();
+        BlockPos pos = event.getTarget().getPos();
         BlockState target = player.world.getBlockState(pos);
         SlabConverter slabConverter = SlabRegistry.getSlabConverter(target.getBlock());
         if (slabConverter != null) {
             GlStateManager.enableBlend();
             GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-            GlStateManager.lineWidth(Math.max(2.5f, (float) Minecraft.getInstance().mainWindow.getFramebufferWidth() / 1920f * 2.5f));
+            GlStateManager.lineWidth(Math.max(2.5f, (float) Minecraft.getInstance().func_228018_at_().getFramebufferWidth() / 1920f * 2.5f));
             GlStateManager.disableTexture();
             GlStateManager.depthMask(false);
             GlStateManager.matrixMode(5889);

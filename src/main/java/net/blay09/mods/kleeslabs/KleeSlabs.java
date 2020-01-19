@@ -39,6 +39,6 @@ public class KleeSlabs {
     }
 
     public static boolean isPlayerKleeSlabbing(PlayerEntity player) {
-        return !KleeSlabsConfig.COMMON.requireSneak.get() || player.isSneaking() != KleeSlabsConfig.COMMON.invertSneak.get();
+        return !KleeSlabsConfig.COMMON.requireSneak.get() || player.func_225608_bj_() != KleeSlabsConfig.COMMON.invertSneak.get();
     }
 }

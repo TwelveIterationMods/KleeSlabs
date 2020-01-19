@@ -75,7 +75,7 @@ public class BlockBreakHandler {
     }
 
     public static BlockRayTraceResult rayTrace(LivingEntity entity, double length) {
-        Vec3d startPos = new Vec3d(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ);
+        Vec3d startPos = new Vec3d(entity.func_226277_ct_(), entity.func_226278_cu_() + entity.getEyeHeight(), entity.func_226281_cx_());
         Vec3d endPos = startPos.add(entity.getLookVec().x * length, entity.getLookVec().y * length, entity.getLookVec().z * length);
         RayTraceContext rayTraceContext = new RayTraceContext(startPos, endPos, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, entity);
         return entity.world.rayTraceBlocks(rayTraceContext);
