@@ -59,11 +59,11 @@ public class BlockHighlightHandler {
                 halfAABB = halfAABB.offset(0, 0.5, 0);
             }
 
-            MatrixStack matrixStack = new MatrixStack();
+            MatrixStack matrixStack = new MatrixStack(); // TODO We need this MatrixStack passed from the event, Forge #6444
             IRenderTypeBuffer.Impl renderTypeBuffer = Minecraft.getInstance().worldRenderer.field_228415_m_.func_228487_b_();
             IVertexBuilder vertexBuilder = renderTypeBuffer.getBuffer(RenderType.func_228659_m_());
             VoxelShape shape = VoxelShapes.create(halfAABB.grow(0.002).offset(-offsetX, -offsetY, -offsetZ));
-            WorldRenderer.func_228445_b_(matrixStack, vertexBuilder, shape, (double) pos.getX() - offsetX, (double)pos.getY() - offsetY, (double)pos.getZ() - offsetZ, 0f, 0f, 0f, 0.4f);
+            WorldRenderer.func_228431_a_(matrixStack, vertexBuilder, shape, (double) pos.getX() - offsetX, (double)pos.getY() - offsetY, (double)pos.getZ() - offsetZ, 0f, 0f, 0f, 0.4f);
 
             RenderSystem.popMatrix();
             RenderSystem.matrixMode(5888);
