@@ -59,7 +59,7 @@ public class BlockHighlightHandler {
                 halfAABB = halfAABB.offset(0, 0.5, 0);
             }
 
-//            MatrixStack matrixStack = event.getMatrixStack();
+//            MatrixStack matrixStack = event.getMatrixStack(); // TODO We need this MatrixStack passed from the event, Forge #6444
             // FIXME: TEMP (Copied from GameRenderer#renderWorld)
             MatrixStack matrixStack = new MatrixStack();
             {
