@@ -59,7 +59,17 @@ public class BlockHighlightHandler {
                 halfAABB = halfAABB.offset(0, 0.5, 0);
             }
 
-            MatrixStack matrixStack = new MatrixStack(); // TODO We need this MatrixStack passed from the event, Forge #6444
+//            MatrixStack matrixStack = event.getMatrixStack();
+            // FIXME: TEMP (Copied from GameRenderer#renderWorld)
+            MatrixStack matrixStack = new MatrixStack();
+            {
+                net.minecraftforge.client.event.EntityViewRenderEvent.CameraSetup cameraSetup = net.minecraftforge.client.ForgeHooksClient.onCameraSetup(Minecraft.getInstance().gameRenderer, event.getInfo(), event.getPartialTicks());
+                event.getInfo().setAnglesInternal(cameraSetup.getYaw(), cameraSetup.getPitch());
+                matrixStack.rotate(Vector3f.ZP.rotationDegrees(cameraSetup.getRoll()));
+
+                matrixStack.rotate(Vector3f.XP.rotationDegrees(event.getInfo().getPitch()));
+                matrixStack.rotate(Vector3f.YP.rotationDegrees(event.getInfo().getYaw() + 180.0F));
+            }
             IRenderTypeBuffer.Impl renderTypeBuffer = Minecraft.getInstance().worldRenderer.field_228415_m_.func_228487_b_();
             IVertexBuilder vertexBuilder = renderTypeBuffer.getBuffer(RenderType.func_228659_m_());
             VoxelShape shape = VoxelShapes.create(halfAABB.grow(0.002).offset(-offsetX, -offsetY, -offsetZ));
