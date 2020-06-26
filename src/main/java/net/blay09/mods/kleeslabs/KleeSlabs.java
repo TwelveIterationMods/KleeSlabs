@@ -3,7 +3,9 @@ package net.blay09.mods.kleeslabs;
 import net.blay09.mods.kleeslabs.network.NetworkHandler;
 import net.blay09.mods.kleeslabs.registry.json.JsonCompatLoader;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.resources.DataPackRegistries;
 import net.minecraft.resources.IReloadableResourceManager;
+import net.minecraft.resources.IResourceManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -34,11 +36,15 @@ public class KleeSlabs {
     }
 
     public void setupServer(FMLServerAboutToStartEvent event) {
-        IReloadableResourceManager resourceManager = event.getServer().getResourceManager();
-        resourceManager.addReloadListener(new JsonCompatLoader());
+        // TODO As DataPackRegistries (and its ResourceManager) is recreated on reload, adding a listener here doesn't do anything - might need a new event in Forge to allow adding listeners
+        DataPackRegistries dataPackRegistries = event.getServer().getDataPackRegistries();
+        final IResourceManager resourceManager = dataPackRegistries.func_240970_h_();
+        if (resourceManager instanceof IReloadableResourceManager) {
+            ((IReloadableResourceManager) resourceManager).addReloadListener(new JsonCompatLoader());
+        }
     }
 
     public static boolean isPlayerKleeSlabbing(PlayerEntity player) {
-        return !KleeSlabsConfig.COMMON.requireSneak.get() || player.isShiftKeyDown() != KleeSlabsConfig.COMMON.invertSneak.get();
+        return !KleeSlabsConfig.COMMON.requireSneak.get() || player.isSneaking() != KleeSlabsConfig.COMMON.invertSneak.get();
     }
 }

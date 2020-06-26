@@ -8,6 +8,8 @@ import net.blay09.mods.kleeslabs.registry.SlabRegistry;
 import net.blay09.mods.kleeslabs.registry.SlabRegistryData;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.profiler.IProfiler;
+import net.minecraft.resources.IFutureReloadListener;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.resources.IResourceManagerReloadListener;
@@ -21,6 +23,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

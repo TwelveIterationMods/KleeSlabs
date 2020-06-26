@@ -12,7 +12,7 @@ import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
@@ -34,7 +34,7 @@ public class BlockBreakHandler {
         }
 
         BlockRayTraceResult rayTraceResult = rayTrace(event.getPlayer(), 6);
-        Vec3d hitVec = rayTraceResult.getType() == RayTraceResult.Type.BLOCK ? rayTraceResult.getHitVec() : null;
+        Vector3d hitVec = rayTraceResult.getType() == RayTraceResult.Type.BLOCK ? rayTraceResult.getHitVec() : null;
 
         // Relativize the hit vector around the player position
         if (hitVec != null) {
@@ -49,7 +49,7 @@ public class BlockBreakHandler {
 
         BlockState dropState = slabConverter.getSingleSlab(state, SlabType.BOTTOM);
         IWorld world = event.getWorld();
-        if (!world.isRemote() && event.getPlayer().canHarvestBlock(event.getState()) && !event.getPlayer().abilities.isCreativeMode) {
+        if (!world.isRemote() && event.getPlayer().func_234569_d_(event.getState()) && !event.getPlayer().abilities.isCreativeMode) { // canHarvestBlock
             Item slabItem = Item.getItemFromBlock(dropState.getBlock());
             if (slabItem != Items.AIR) {
                 ItemStack itemStack = new ItemStack(slabItem);
@@ -75,8 +75,8 @@ public class BlockBreakHandler {
     }
 
     public static BlockRayTraceResult rayTrace(LivingEntity entity, double length) {
-        Vec3d startPos = new Vec3d(entity.getPosX(), entity.getPosY() + entity.getEyeHeight(), entity.getPosZ());
-        Vec3d endPos = startPos.add(entity.getLookVec().x * length, entity.getLookVec().y * length, entity.getLookVec().z * length);
+        Vector3d startPos = new Vector3d(entity.getPosX(), entity.getPosY() + entity.getEyeHeight(), entity.getPosZ());
+        Vector3d endPos = startPos.add(entity.getLookVec().x * length, entity.getLookVec().y * length, entity.getLookVec().z * length);
         RayTraceContext rayTraceContext = new RayTraceContext(startPos, endPos, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, entity);
         return entity.world.rayTraceBlocks(rayTraceContext);
     }

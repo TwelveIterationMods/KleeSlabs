@@ -4,13 +4,6 @@ buildscript {
         maven { url = "http://files.minecraftforge.net/maven" }
 		mavenCentral()
     }
-	// This is only here while FG is under active development
-	configurations.classpath {
-		resolutionStrategy {
-			cacheDynamicVersionsFor 10, "seconds"
-			cacheChangingModulesFor 0, "seconds"
-		}
-	}
     dependencies {
         classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "3.+", changing: true
     }
@@ -35,17 +28,37 @@ minecraft {
 	accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
 	runs {
-		client = {
-			properties 'forge.logging.markers': 'SCAN,REGISTRIES,REGISTRYDUMP'
-			properties 'forge.logging.console.level': 'debug'
-			workingDirectory project.file('run').canonicalPath
-			source sourceSets.main
+		client {
+			workingDirectory project.file('run')
+			property 'forge.logging.console.level', 'debug'
+
+			mods {
+				kleeslabs {
+					source sourceSets.main
+				}
+			}
 		}
-		server = {
-			properties 'forge.logging.markers': 'SCAN,REGISTRIES,REGISTRYDUMP'
-			properties 'forge.logging.console.level': 'debug'
-			workingDirectory project.file('run').canonicalPath
-			source sourceSets.main
+		server {
+			workingDirectory project.file('run')
+			property 'forge.logging.console.level', 'debug'
+
+			mods {
+				kleeslabs {
+					source sourceSets.main
+				}
+			}
+		}
+		data {
+			workingDirectory project.file('run')
+			property 'forge.logging.console.level', 'debug'
+
+			args '--mod', 'inventoryessentials', '--all', '--output', file('src/generated/resources/')
+
+			mods {
+				kleeslabs {
+					source sourceSets.main
+				}
+			}
 		}
 	}
 }
@@ -58,12 +71,11 @@ dependencies {
 	])
 }
 
-// Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
         attributes(["Specification-Title": mod_id,
                     "Specification-Vendor": "BlayTheNinth",
-                    "Specification-Version": "24.0", // We are version 1 of the modlauncher specification
+                    "Specification-Version": "1",
                     "Implementation-Title": project.name,
                     "Implementation-Version": "${version}",
                     "Implementation-Vendor" :"BlayTheNinth",

@@ -2,7 +2,7 @@ package net.blay09.mods.kleeslabs.converter;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.state.IProperty;
+import net.minecraft.state.Property;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.SlabType;
 
@@ -17,8 +17,8 @@ public class SmartSlabConverter implements SlabConverter {
     @Override
     public BlockState getSingleSlab(BlockState state, SlabType slabType) {
         BlockState newState = singleSlab.getDefaultState();
-        for (IProperty<?> property : state.getProperties()) {
-            if (newState.getProperties().contains(property)) {
+        for (Property<?> property : state.func_235904_r_()) { // getProperties()
+            if (newState.func_235904_r_().contains(property)) { // getProperties()
                 newState = copyProperty(state, newState, property);
             }
         }
@@ -30,7 +30,7 @@ public class SmartSlabConverter implements SlabConverter {
         return state.get(BlockStateProperties.SLAB_TYPE) == SlabType.DOUBLE;
     }
 
-    private <T extends Comparable<T>> BlockState copyProperty(BlockState sourceState, BlockState targetState, IProperty<T> property) {
+    private <T extends Comparable<T>> BlockState copyProperty(BlockState sourceState, BlockState targetState, Property<T> property) {
         return targetState.with(property, sourceState.get(property));
     }
 

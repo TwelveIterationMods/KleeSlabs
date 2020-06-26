@@ -46,7 +46,7 @@ public class BlockHighlightHandler {
 
             MatrixStack matrixStack = event.getMatrix();
             IRenderTypeBuffer buffers = event.getBuffers();
-            IVertexBuilder vertexBuilder = buffers.getBuffer(RenderType.lines());
+            IVertexBuilder vertexBuilder = buffers.getBuffer(RenderType.LINES);
             VoxelShape shape = VoxelShapes.create(halfAABB.grow(0.002));
 
             double camX = event.getInfo().getProjectedView().x;
