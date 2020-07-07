@@ -35,7 +35,7 @@ public class SmarterSlabConverter implements SlabConverter {
         for (Property<?> property : state.func_235904_r_()) { // getProperties()
             if (property.getName().equals("half")) {
                 IStringSerializable value = (IStringSerializable) state.get(property);
-                if (value.func_176610_l().equals("full")) { // getName()
+                if (value.getString().equals("full")) {
                     return true;
                 }
             }

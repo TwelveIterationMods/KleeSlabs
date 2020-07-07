@@ -3,16 +3,13 @@ package net.blay09.mods.kleeslabs;
 import net.blay09.mods.kleeslabs.network.NetworkHandler;
 import net.blay09.mods.kleeslabs.registry.json.JsonCompatLoader;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.resources.DataPackRegistries;
-import net.minecraft.resources.IReloadableResourceManager;
-import net.minecraft.resources.IResourceManager;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +23,7 @@ public class KleeSlabs {
 
     public KleeSlabs() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupCommon);
-        MinecraftForge.EVENT_BUS.addListener(this::setupServer);
+        MinecraftForge.EVENT_BUS.addListener(this::addReloadListeners);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, KleeSlabsConfig.commonSpec);
     }
@@ -35,13 +32,8 @@ public class KleeSlabs {
         DeferredWorkQueue.runLater(NetworkHandler::init);
     }
 
-    public void setupServer(FMLServerAboutToStartEvent event) {
-        // TODO As DataPackRegistries (and its ResourceManager) is recreated on reload, adding a listener here doesn't do anything - might need a new event in Forge to allow adding listeners
-        DataPackRegistries dataPackRegistries = event.getServer().getDataPackRegistries();
-        final IResourceManager resourceManager = dataPackRegistries.func_240970_h_();
-        if (resourceManager instanceof IReloadableResourceManager) {
-            ((IReloadableResourceManager) resourceManager).addReloadListener(new JsonCompatLoader());
-        }
+    public void addReloadListeners(AddReloadListenerEvent event) {
+        event.addListener(new JsonCompatLoader());
     }
 
     public static boolean isPlayerKleeSlabbing(PlayerEntity player) {

@@ -36,6 +36,11 @@
     "quartz_slab",
     "red_sandstone_slab",
     "cut_red_sandstone_slab",
-    "purpur_slab"
+    "purpur_slab",
+    "crimson_slab",
+    "warped_slab",
+    "blackstone_slab",
+    "polished_blackstone_slab",
+    "polished_blackstone_brick_slab"
   ]
 }
