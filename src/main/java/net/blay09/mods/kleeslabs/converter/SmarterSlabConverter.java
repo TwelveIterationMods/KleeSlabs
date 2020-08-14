@@ -19,7 +19,7 @@ public class SmarterSlabConverter implements SlabConverter {
     @Override
     public BlockState getSingleSlab(BlockState state, SlabType slabType) {
         BlockState newState = slabBlock.getDefaultState();
-        for (Property<?> property : state.func_235904_r_()) { // getProperties()
+        for (Property<?> property : state.getProperties()) {
             if (property.getName().equals("half")) {
                 newState = getHalfBlockState(newState, property, slabType);
             } else {
@@ -32,7 +32,7 @@ public class SmarterSlabConverter implements SlabConverter {
 
     @Override
     public boolean isDoubleSlab(BlockState state) {
-        for (Property<?> property : state.func_235904_r_()) { // getProperties()
+        for (Property<?> property : state.getProperties()) {
             if (property.getName().equals("half")) {
                 IStringSerializable value = (IStringSerializable) state.get(property);
                 if (value.getString().equals("full")) {

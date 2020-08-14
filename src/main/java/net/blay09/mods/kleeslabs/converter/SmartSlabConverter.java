@@ -17,8 +17,8 @@ public class SmartSlabConverter implements SlabConverter {
     @Override
     public BlockState getSingleSlab(BlockState state, SlabType slabType) {
         BlockState newState = singleSlab.getDefaultState();
-        for (Property<?> property : state.func_235904_r_()) { // getProperties()
-            if (newState.func_235904_r_().contains(property)) { // getProperties()
+        for (Property<?> property : state.getProperties()) {
+            if (newState.getProperties().contains(property)) {
                 newState = copyProperty(state, newState, property);
             }
         }
