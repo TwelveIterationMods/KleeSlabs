@@ -28,7 +28,7 @@ public class KleeSlabsConfig {
             disabledCompat = builder
                     .comment("IDs of mods whose compatibility should be disabled.")
                     .translation("kleeslabs.config.disabledCompat")
-                    .define("disabledCompat", Collections.emptyList());
+                    .defineList("disabledCompat", Collections.emptyList(), o -> o instanceof String);
         }
     }
 
