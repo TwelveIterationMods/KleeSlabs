@@ -1,6 +1,7 @@
 package net.blay09.mods.kleeslabs;
 
 import net.blay09.mods.balm.api.Balm;
+import net.blay09.mods.balm.api.event.BreakBlockEvent;
 import net.blay09.mods.balm.api.event.PlayerLoginEvent;
 import net.blay09.mods.kleeslabs.network.KleeSlabsRegistryMessage;
 import net.blay09.mods.kleeslabs.network.ModNetworking;
@@ -28,25 +29,8 @@ public class KleeSlabs {
 
         Balm.addServerReloadListener(new ResourceLocation(MOD_ID, "json_registry"), new JsonCompatLoader());
 
-        Balm.getEvents().onEvent(PlayerLoginEvent.class, event -> {
-            boolean isFirst = true;
-            final int pageSize = 20;
-            List<SlabRegistryData> subList = new ArrayList<>();
-            List<SlabRegistryData> entries = SlabRegistry.getSlabEntries();
-            for (SlabRegistryData entry : entries) {
-                subList.add(entry);
-
-                if (subList.size() >= pageSize) {
-                    Balm.getNetworking().sendTo(event.getPlayer(), new KleeSlabsRegistryMessage(isFirst, subList));
-                    isFirst = false;
-                    subList = new ArrayList<>();
-                }
-            }
-
-            if (subList.size() > 0) {
-                Balm.getNetworking().sendTo(event.getPlayer(), new KleeSlabsRegistryMessage(isFirst, subList));
-            }
-        });
+        Balm.getEvents().onEvent(PlayerLoginEvent.class, LoginSyncHandler::onPlayerLogin);
+        Balm.getEvents().onEvent(BreakBlockEvent.class, BlockBreakHandler::onBreakBlock);
 
         Balm.initialize(MOD_ID);
     }
