@@ -25,8 +25,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class KleeSlabsClient {
 
     public static void initialize() {
-        BalmClient.initialize(KleeSlabs.MOD_ID);
-
         Balm.getEvents().onEvent(BlockHighlightDrawEvent.class, KleeSlabsClient::onDrawBlockHighlight);
     }
 
