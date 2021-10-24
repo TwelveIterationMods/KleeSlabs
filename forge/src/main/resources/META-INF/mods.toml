@@ -2,6 +2,7 @@ modLoader="javafml"
 loaderVersion="[37,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ModdingForBlockheads/KleeSlabs/issues"
+
 [[mods]]
 modId="kleeslabs"
 version="${file.jarVersion}"
@@ -11,8 +12,9 @@ logoFile="kleeslabs-icon.png"
 credits="BlayTheNinth"
 authors="BlayTheNinth"
 description='''
-
+Break only the half of a double slab that you're looking at.
 '''
+
 [[dependencies.kleeslabs]]
     modId="forge"
     mandatory=true
@@ -28,6 +30,6 @@ description='''
 [[dependencies.kleeslabs]]
     modId="balm"
     mandatory=true
-    versionRange="[1.6.0,)"
+    versionRange="[1.7.0,)"
     ordering="NONE"
     side="BOTH"
