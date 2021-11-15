@@ -3,8 +3,8 @@ package net.blay09.mods.kleeslabs.registry;
 import net.blay09.mods.kleeslabs.KleeSlabs;
 import net.blay09.mods.kleeslabs.converter.SlabConverter;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
