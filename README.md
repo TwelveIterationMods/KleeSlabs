@@ -1,11 +1,10 @@
 # KleeSlabs
 
-Minecraft Mod. 
+Minecraft Mod. Break only the half of a double slab that you're looking at.
 
 See [the license](LICENSE) for modpack permissions etc.
 
-This mod is available for both Forge and Fabric (starting Minecraft 1.17). This is a trial run to see if supporting both
-platforms is feasible.
+This mod is available for both Forge and Fabric (starting Minecraft 1.17).
 
 #### Forge
 
@@ -14,8 +13,8 @@ platforms is feasible.
 
 #### Fabric
 
-[![Versions](http://cf.way2muchnoise.eu/versions/_latest.svg)](https://www.curseforge.com/minecraft/mc-mods/kleeslabs-fabric)
-[![Downloads](http://cf.way2muchnoise.eu/full__downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/kleeslabs-fabric)
+[![Versions](http://cf.way2muchnoise.eu/versions/547695_latest.svg)](https://www.curseforge.com/minecraft/mc-mods/kleeslabs-fabric)
+[![Downloads](http://cf.way2muchnoise.eu/full_547695_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/kleeslabs-fabric)
 
 ## Contributing
 
