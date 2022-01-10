@@ -1,10 +1,27 @@
 {
   "modid": "biomesoplenty",
   "converter": "SmartSlabConverter",
-  "pattern_replace": "double_$0",
-  "pattern_slabs": [
-    "wood_slab_0",
-    "wood_slab_1",
-    "other_slab"
+  "slabs": [
+    "white_sandstone_slab",
+    "smooth_white_sandstone_slab",
+    "cut_white_sandstone_slab",
+    "orange_sandstone_slab",
+    "smooth_orange_sandstone_slab",
+    "cut_orange_sandstone_slab",
+    "black_sandstone_slab",
+    "smooth_black_sandstone_slab",
+    "cut_black_sandstone_slab",
+    "mud_brick_slab",
+    "fir_slab",
+    "redwood_slab",
+    "cherry_slab",
+    "mahogany_slab",
+    "jacaranda_slab",
+    "palm_slab",
+    "willow_slab",
+    "dead_slab",
+    "magic_slab",
+    "umbran_slab",
+    "hellbark_slab"
   ]
 }

@@ -115,16 +115,20 @@ sourceSets {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 	compileOnly project(":shared")
 
     implementation fg.deobf("net.blay09.mods:balm:${balm_forge_version}")
 
-    compileOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:5.0.38")
-    testCompileOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:5.0.38")
+    compileOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:6.1.48")
+    testCompileOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:6.1.48")
 
-    compileOnly fg.deobf("mezz.jei:jei-1.17.1:8.2.0.37:api")
-//    runtimeOnly fg.deobf("mezz.jei:jei-1.17.1:8.2.0.37")
+    compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.2.54:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.2.54")
+
+    implementation fg.deobf("curse.maven:autoreglib-250363:3575622")
+    implementation fg.deobf("curse.maven:quark-243121:3578106")
+    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3586131")
 
     implementation "org.jetbrains:annotations:22.0.0"
 }

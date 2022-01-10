@@ -74,7 +74,7 @@ public class JsonCompatLoader implements ResourceManagerReloadListener {
                 if (slab != Blocks.AIR) {
                     SlabRegistry.registerSlab(new SlabRegistryData(converterClass, slab, slab));
                 } else if (!isSilent) {
-                    KleeSlabs.logger.error("Slab {} could not be found.", slabName);
+                    KleeSlabs.logger.error("Slab {}:{} could not be found.", modId, slabName);
                 }
             }
         }
@@ -85,14 +85,14 @@ public class JsonCompatLoader implements ResourceManagerReloadListener {
                 String singleSlabName = entry.getKey();
                 Block singleSlab = parseBlock(modId, singleSlabName);
                 if (singleSlab == Blocks.AIR) {
-                    KleeSlabs.logger.error("Slab {} could not be found.", singleSlabName);
+                    KleeSlabs.logger.error("Slab {}:{} could not be found.", modId, singleSlabName);
                     continue;
                 }
 
                 String doubleSlabName = entry.getValue();
                 Block doubleSlab = parseBlock(modId, doubleSlabName);
                 if (doubleSlab == Blocks.AIR) {
-                    KleeSlabs.logger.error("Slab {} could not be found.", doubleSlabName);
+                    KleeSlabs.logger.error("Slab {}:{} could not be found.", modId, doubleSlabName);
                     continue;
                 }
 
@@ -111,13 +111,13 @@ public class JsonCompatLoader implements ResourceManagerReloadListener {
                 String doubleSlabName = matcherSearch.replaceFirst(patternReplace);
                 Block singleSlab = parseBlock(modId, singleSlabName);
                 if (singleSlab == Blocks.AIR) {
-                    KleeSlabs.logger.error("Slab {} could not be found.", singleSlabName);
+                    KleeSlabs.logger.error("Slab {}:{} could not be found.", modId, singleSlabName);
                     continue;
                 }
 
                 Block doubleSlab = parseBlock(modId, doubleSlabName);
                 if (doubleSlab == Blocks.AIR) {
-                    KleeSlabs.logger.error("Slab {} could not be found.", doubleSlabName);
+                    KleeSlabs.logger.error("Slab {}:{} could not be found.", modId, doubleSlabName);
                     continue;
                 }
 
