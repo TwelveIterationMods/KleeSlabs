@@ -3,6 +3,7 @@ package net.blay09.mods.kleeslabs;
 import me.shedaniel.autoconfig.annotation.Config;
 import net.blay09.mods.balm.api.config.BalmConfigData;
 import net.blay09.mods.balm.api.config.Comment;
+import net.blay09.mods.balm.api.config.ExpectedType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,5 +14,6 @@ public class KleeSlabsConfigData implements BalmConfigData {
     public KleeSlabsMode mode = KleeSlabsMode.ALWAYS;
 
     @Comment("IDs of mods whose compatibility should be disabled.")
+    @ExpectedType(String.class)
     public List<String> disabledCompat = new ArrayList<>();
 }
