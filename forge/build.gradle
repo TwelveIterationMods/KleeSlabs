@@ -129,6 +129,9 @@ dependencies {
     implementation fg.deobf("curse.maven:autoreglib-250363:3575622")
     implementation fg.deobf("curse.maven:quark-243121:3578106")
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3586131")
+    implementation fg.deobf("curse.maven:flywheel-486392:3623314")
+    implementation fg.deobf("curse.maven:create-328085:3623348")
+    implementation fg.deobf("curse.maven:extended-slabs-plus-374492:3627603")
 
     implementation "org.jetbrains:annotations:22.0.0"
 }
