@@ -1,5 +1,3 @@
-
-
 package net.blay09.mods.kleeslabs.converter;
 
 import net.minecraft.core.BlockPos;

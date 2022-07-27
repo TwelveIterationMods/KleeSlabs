@@ -14,7 +14,7 @@ import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-import java.io.InputStreamReader;
+import java.io.BufferedReader;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -26,12 +26,11 @@ public class JsonCompatLoader implements ResourceManagerReloadListener {
 
     @Override
     public void onResourceManagerReload(ResourceManager resourceManager) {
-        for (ResourceLocation resourceLocation : resourceManager.listResources("kleeslabs_compat", it -> it.endsWith(".json"))) {
-            try (Resource resource = resourceManager.getResource(resourceLocation)) {
-                InputStreamReader reader = new InputStreamReader(resource.getInputStream());
+        for (Map.Entry<ResourceLocation, Resource> entry : resourceManager.listResources("kleeslabs_compat", it -> it.getPath().endsWith(".json")).entrySet()) {
+            try (BufferedReader reader = entry.getValue().openAsReader()) {
                 load(gson.fromJson(reader, JsonCompatData.class));
             } catch (Exception e) {
-                KleeSlabs.logger.error("Parsing error loading KleeSlabs Data File at {}", resourceLocation, e);
+                KleeSlabs.logger.error("Parsing error loading KleeSlabs Data File at {}", entry.getKey(), e);
             }
         }
     }
