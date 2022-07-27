@@ -51,7 +51,7 @@ public class BlockBreakHandler {
             hit = SlabType.BOTTOM;
         }
 
-        BlockState dropState = slabConverter.getSingleSlab(event, hit);
+        BlockState dropState = slabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), hit);
         Level level = event.getLevel();
         if (!level.isClientSide() && event.getPlayer().hasCorrectToolForDrops(dropState) && !event.getPlayer().getAbilities().instabuild) {
             Item slabItem = Item.byBlock(dropState.getBlock());
@@ -67,7 +67,7 @@ public class BlockBreakHandler {
             }
         }
 
-        BlockState newState = slabConverter.getSingleSlab(event, stay);
+        BlockState newState = slabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), stay);
         event.getLevel().setBlock(event.getPos(), newState, 1 | 2);
         event.setCanceled(true);
     }
