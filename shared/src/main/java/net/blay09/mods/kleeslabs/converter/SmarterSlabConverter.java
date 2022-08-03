@@ -1,6 +1,9 @@
 package net.blay09.mods.kleeslabs.converter;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -17,7 +20,7 @@ public class SmarterSlabConverter implements SlabConverter {
     }
 
     @Override
-    public BlockState getSingleSlab(BlockState state, SlabType slabType) {
+    public BlockState getSingleSlab(BlockState state, Level level, BlockPos pos, Player player, SlabType slabType) {
         BlockState newState = slabBlock.defaultBlockState();
         for (Property<?> property : state.getProperties()) {
             if (property.getName().equals("half")) {

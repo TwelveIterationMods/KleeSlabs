@@ -41,9 +41,19 @@ public class BlockBreakHandler {
             return;
         }
 
-        BlockState dropState = slabConverter.getSingleSlab(state, SlabType.BOTTOM);
+        SlabType hit;
+        SlabType stay;
+        if (hitVec != null && hitVec.y > 0.5f) {
+            hit = SlabType.TOP;
+            stay = SlabType.BOTTOM;
+        } else {
+            stay = SlabType.TOP;
+            hit = SlabType.BOTTOM;
+        }
+
+        BlockState dropState = slabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), hit);
         Level level = event.getLevel();
-        if (!level.isClientSide() && event.getPlayer().hasCorrectToolForDrops(event.getState()) && !event.getPlayer().getAbilities().instabuild) {
+        if (!level.isClientSide() && event.getPlayer().hasCorrectToolForDrops(dropState) && !event.getPlayer().getAbilities().instabuild) {
             Item slabItem = Item.byBlock(dropState.getBlock());
             if (slabItem != Items.AIR) {
                 ItemStack itemStack = new ItemStack(slabItem);
@@ -57,13 +67,7 @@ public class BlockBreakHandler {
             }
         }
 
-        BlockState newState;
-        if (hitVec != null && hitVec.y < 0.5f) {
-            newState = slabConverter.getSingleSlab(state, SlabType.TOP);
-        } else {
-            newState = slabConverter.getSingleSlab(state, SlabType.BOTTOM);
-        }
-
+        BlockState newState = slabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), stay);
         event.getLevel().setBlock(event.getPos(), newState, 1 | 2);
         event.setCanceled(true);
     }
