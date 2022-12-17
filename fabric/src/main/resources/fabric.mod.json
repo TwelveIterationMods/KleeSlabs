@@ -10,8 +10,8 @@
   ],
   "contact": {
     "homepage": "https://blay09.net/mods/kleeslabs",
-    "sources": "https://github.com/ModdingForBlockheads/KleeSlabs",
-    "issues": "https://github.com/ModdingForBlockheads/KleeSlabs/issues"
+    "sources": "https://github.com/TwelveIterationMods/KleeSlabs",
+    "issues": "https://github.com/TwelveIterationMods/KleeSlabs/issues"
   },
 
   "license": "All Rights Reserved",
@@ -33,11 +33,11 @@
     "kleeslabs.mixins.json"
   ],
   "depends": {
-    "cloth-config2": ">=5.0.34",
-    "balm-fabric": ">=4.0.0",
+    "cloth-config": ">=9.0.0",
+    "balm-fabric": ">=5.0.0",
     "fabricloader": ">=0.14.7",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": ">=1.19.3",
     "java": ">=17"
   },
   "suggests": {
