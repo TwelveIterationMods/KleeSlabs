@@ -7,6 +7,7 @@ import net.blay09.mods.kleeslabs.KleeSlabsConfig;
 import net.blay09.mods.kleeslabs.converter.SlabConverter;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
 import net.blay09.mods.kleeslabs.registry.SlabRegistryData;
+import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -23,10 +24,11 @@ import java.util.regex.Pattern;
 public class JsonCompatLoader implements ResourceManagerReloadListener {
 
     private static final Gson gson = new Gson();
+    private static final FileToIdConverter COMPAT_JSONS = FileToIdConverter.json("kleeslabs_compat");
 
     @Override
     public void onResourceManagerReload(ResourceManager resourceManager) {
-        for (Map.Entry<ResourceLocation, Resource> entry : resourceManager.listResources("kleeslabs_compat", it -> it.getPath().endsWith(".json")).entrySet()) {
+        for (Map.Entry<ResourceLocation, Resource> entry : COMPAT_JSONS.listMatchingResources(resourceManager).entrySet()) {
             try (BufferedReader reader = entry.getValue().openAsReader()) {
                 load(gson.fromJson(reader, JsonCompatData.class));
             } catch (Exception e) {
