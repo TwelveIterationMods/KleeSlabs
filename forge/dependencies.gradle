@@ -7,4 +7,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:wthit-455982:3856256")
     implementation fg.deobf("curse.maven:jade-324717:4010505")
     compileOnly fg.deobf("curse.maven:the-one-probe-245211:3430022")
+
+    runtimeOnly fg.deobf("curse.maven:terrablender-563928:4205706")
+    runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:4410599")
 }
