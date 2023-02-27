@@ -1,1 +1,3 @@
-- Updated to Minecraft 1.19.3
+- Added `dumpSlabs` option to print out a list of blocks ending in _slab on world load
+- Updated BiomesOPlenty support to remove no longer existing mud_brick_slab
+- Updated Vanilla support to add new slabs
