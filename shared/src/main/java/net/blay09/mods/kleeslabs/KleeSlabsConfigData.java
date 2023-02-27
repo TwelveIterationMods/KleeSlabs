@@ -16,4 +16,7 @@ public class KleeSlabsConfigData implements BalmConfigData {
     @Comment("IDs of mods whose compatibility should be disabled.")
     @ExpectedType(String.class)
     public List<String> disabledCompat = new ArrayList<>();
+
+    @Comment("Set to true to have KleeSlabs dump a list of items containing the word 'slab' in their name upon world load")
+    public boolean dumpSlabs = false;
 }
