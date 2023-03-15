@@ -1,7 +1,3 @@
-### Version 12.1.0 for Minecraft 1.19.x
-
-- Improved API for better third party mod support (by CebbyS)
-
-### Version 12.0.0 for Minecraft 1.19.x
-
-- Updated to Minecraft 1.19
+- Added `dumpSlabs` option to print out a list of blocks ending in _slab on world load
+- Updated BiomesOPlenty support to remove no longer existing mud_brick_slab
+- Updated Vanilla support to add new slabs
