@@ -1,7 +1,4 @@
-### Version 12.1.0 for Minecraft 1.19.x
-
-- Improved API for better third party mod support (by CebbyS)
-
-### Version 12.0.0 for Minecraft 1.19.x
-
-- Updated to Minecraft 1.19
+- Added `dumpSlabs` option to print out a list of blocks ending in _slab on world load
+- Added support for Upgrade Aquatic slabs
+- Added support for Oceanopolis slabs
+- Updated Vanilla support to add new slabs

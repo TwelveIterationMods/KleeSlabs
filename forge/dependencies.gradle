@@ -8,6 +8,9 @@ dependencies {
     implementation fg.deobf("curse.maven:jade-324717:4010505")
     compileOnly fg.deobf("curse.maven:the-one-probe-245211:3430022")
 
-    runtimeOnly fg.deobf("curse.maven:terrablender-563928:4205706")
-    runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:4410599")
+    runtimeOnly fg.deobf("curse.maven:terrablender-563928:4205732")
+    runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:4128419")
+    runtimeOnly fg.deobf("curse.maven:oceanopolis-783232:4359064")
+    runtimeOnly fg.deobf("curse.maven:blueprint-382216:4427413")
+    runtimeOnly fg.deobf("curse.maven:upgrade-aquatic-326895:4415517")
 }
