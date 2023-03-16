@@ -1,7 +1,7 @@
 package net.blay09.mods.kleeslabs;
 
 import net.blay09.mods.balm.api.event.server.ServerStartedEvent;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ public class SlabDumpHandler {
     }
 
     public static void dumpSlabs() {
-        Map<String, List<ResourceLocation>> slabsByMod = BuiltInRegistries.BLOCK.keySet()
+        Map<String, List<ResourceLocation>> slabsByMod = Registry.BLOCK.keySet()
                 .stream()
                 .filter(itemName -> itemName.getPath().endsWith("_slab"))
                 .collect(Collectors.groupingBy(ResourceLocation::getNamespace));
