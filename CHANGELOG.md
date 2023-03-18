@@ -1,4 +1,1 @@
-- Added `dumpSlabs` option to print out a list of blocks ending in _slab on world load
-- Added support for Upgrade Aquatic slabs
-- Added support for Oceanopolis slabs
-- Updated Vanilla support to add new slabs
+- Fixed slabs getting logged on server start even if dumpSlabs option is disabled
