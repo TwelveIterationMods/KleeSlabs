@@ -15,7 +15,9 @@ public class SlabDumpHandler {
     private static final Logger log = LoggerFactory.getLogger(SlabDumpHandler.class);
 
     public static void onServerStarted(ServerStartedEvent event) {
-        dumpSlabs();
+        if (KleeSlabsConfig.getActive().dumpSlabs) {
+            dumpSlabs();
+        }
     }
 
     public static void dumpSlabs() {

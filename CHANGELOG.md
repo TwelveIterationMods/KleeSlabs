@@ -1,1 +1,1 @@
-- Updated to Minecraft 1.19.4
+- Fixed slabs getting logged on server start even if dumpSlabs option is disabled
