@@ -1,0 +1,18 @@
+{
+  "modid": "ae2",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "chiseled_quartz_slab",
+    "cut_quartz_slab",
+    "fluix_slab",
+    "quartz_brick_slab",
+    "quartz_pillar_slab",
+    "quartz_slab",
+    "sky_stone_brick_slab",
+    "sky_stone_slab",
+    "sky_stone_small_brick_slab",
+    "smooth_quartz_slab",
+    "smooth_sky_stone_slab"
+  ]
+}
