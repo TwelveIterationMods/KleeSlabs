@@ -27,7 +27,7 @@ public class BlockBreakHandler {
             return;
         }
 
-        BlockHitResult rayTraceResult = rayTrace(event.getPlayer(), 6);
+        BlockHitResult rayTraceResult = rayTrace(event.getPlayer(), Balm.getHooks().getBlockReachDistance(event.getPlayer()));
         Vec3 hitVec = rayTraceResult.getType() == BlockHitResult.Type.BLOCK ? rayTraceResult.getLocation() : null;
 
         // Relativize the hit vector around the player position
@@ -76,7 +76,7 @@ public class BlockBreakHandler {
         Vec3 startPos = new Vec3(entity.getX(), entity.getY() + entity.getEyeHeight(), entity.getZ());
         Vec3 endPos = startPos.add(entity.getLookAngle().x * length, entity.getLookAngle().y * length, entity.getLookAngle().z * length);
         ClipContext rayTraceContext = new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity);
-        return entity.level.clip(rayTraceContext);
+        return entity.level().clip(rayTraceContext);
     }
 
 }

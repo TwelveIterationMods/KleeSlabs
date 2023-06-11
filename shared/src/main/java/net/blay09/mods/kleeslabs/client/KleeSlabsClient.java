@@ -40,7 +40,7 @@ public class KleeSlabsClient {
         }
 
         BlockPos pos = hitResult.getBlockPos();
-        BlockState state = player.level.getBlockState(pos);
+        BlockState state = player.level().getBlockState(pos);
         SlabConverter slabConverter = SlabRegistry.getSlabConverter(state.getBlock());
         if (slabConverter != null && slabConverter.isDoubleSlab(state)) {
             AABB halfAABB = new AABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 0.5, pos.getZ() + 1);
