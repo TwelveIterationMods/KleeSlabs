@@ -1,6 +1,1 @@
-- Fixed slabs getting logged on server start even if dumpSlabs option is disabled
-- Added support for Mekanism: Additions slabs
-- Added support for Deeper and Darker slabs
-- Added support for Caveopolis slabs
-- Added support for Applied Energistics 2 slabs
-- Added support for Mystical Agriculture slabs
+- Updated to Minecraft 1.20
