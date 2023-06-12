@@ -1,5 +1,5 @@
 {
-  "text.autoconfig.kleeslabs.title": "KleeSlabs",
-  "text.autoconfig.kleeslabs.option.mode": "Режим",
-  "text.autoconfig.kleeslabs.option.disabledCompat": "Вимкнена сумісність"
+  "config.kleeslabs.title": "KleeSlabs",
+  "config.kleeslabs.mode": "Режим",
+  "config.kleeslabs.disabledCompat": "Вимкнена сумісність"
 }

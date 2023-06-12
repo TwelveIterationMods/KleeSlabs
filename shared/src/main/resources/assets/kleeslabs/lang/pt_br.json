@@ -1,5 +1,5 @@
 {
-    "text.autoconfig.kleeslabs.title": "KleeSlabs",
-    "text.autoconfig.kleeslabs.option.mode": "Modo",
-    "text.autoconfig.kleeslabs.option.disabledCompat": "Compatibilidade Desativada"
+    "config.kleeslabs.title": "KleeSlabs",
+    "config.kleeslabs.mode": "Modo",
+    "config.kleeslabs.disabledCompat": "Compatibilidade Desativada"
   }
