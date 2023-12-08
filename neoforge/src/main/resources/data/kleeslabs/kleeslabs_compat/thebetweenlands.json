@@ -1,0 +1,28 @@
+{
+  "modid": "thebetweenlands",
+  "converter": "SmarterSlabConverter",
+  "slabs": [
+    "cragrock_slab",
+    "pitstone_slab",
+    "betweenstone_slab",
+    "smooth_pitstone_slab",
+    "tar_solid_slab",
+    "temple_brick_slab",
+    "betweenstone_brick_slab",
+    "mud_brick_slab",
+    "cragrock_brick_slab",
+    "limestone_brick_slab",
+    "limestone_slab",
+    "smooth_betweenstone_slab",
+    "smooth_cragrock_slab",
+    "polished_limestone_slab",
+    "pitstone_brick_slab",
+    "mossy_betweenstone_brick_slab",
+    "mossy_smooth_betweenstone_slab",
+    "cracked_betweenstone_brick_slab",
+    "weedwood_plank_slab",
+    "rubber_tree_plank_slab",
+    "giant_root_plank_slab",
+    "thatch_slab"
+  ]
+}

@@ -1,6 +1,7 @@
-package net.blay09.mods.kleeslabs;
+package net.blay09.mods.kleeslabs.fabric;
 
 import net.blay09.mods.balm.api.Balm;
+import net.blay09.mods.kleeslabs.KleeSlabs;
 import net.fabricmc.api.ModInitializer;
 
 public class FabricKleeSlabs implements ModInitializer {

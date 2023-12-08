@@ -1,0 +1,15 @@
+{
+  "modid": "forestry",
+  "converter": "SmartSlabConverter",
+  "mapped_slabs": {
+    "slabs.0": "slabs.double.0",
+    "slabs.1": "slabs.double.1",
+    "slabs.2": "slabs.double.2",
+    "slabs.3": "slabs.double.3",
+    "slabs.fireproof.0": "slabs.double.fireproof.0",
+    "slabs.fireproof.1": "slabs.double.fireproof.1",
+    "slabs.fireproof.2": "slabs.double.fireproof.2",
+    "slabs.fireproof.3": "slabs.double.fireproof.3",
+    "slabs.vanilla.fireproof.0": "slabs.vanilla.double.fireproof.0"
+  }
+}

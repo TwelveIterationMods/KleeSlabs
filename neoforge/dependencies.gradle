@@ -1,0 +1,4 @@
+dependencies {
+    // runtimeOnly fg.deobf("curse.maven:terrablender-563928:4205706")
+    // runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:4410599")
+}

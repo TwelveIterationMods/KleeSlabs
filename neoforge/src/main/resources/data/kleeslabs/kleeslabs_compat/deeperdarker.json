@@ -1,0 +1,22 @@
+{
+  "modid": "deeperdarker",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "cobbled_gloomslate_slab",
+    "cobbled_sculk_stone_slab",
+    "cut_gloomslate_slab",
+    "cut_sculk_stone_slab",
+    "echo_slab",
+    "gloomslate_brick_slab",
+    "gloomslate_slab",
+    "gloomslate_tile_slab",
+    "polished_gloomslate_slab",
+    "polished_sculk_stone_slab",
+    "sculk_stone_brick_slab",
+    "sculk_stone_slab",
+    "sculk_stone_tile_slab",
+    "smooth_gloomslate_slab",
+    "smooth_sculk_stone_slab"
+  ]
+}

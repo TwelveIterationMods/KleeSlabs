@@ -1,0 +1,11 @@
+{
+  "modid": "mysticalagriculture",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "soulstone_bricks_slab",
+    "soulstone_cobble_slab",
+    "soulstone_slab",
+    "soulstone_smooth_slab"
+  ]
+}

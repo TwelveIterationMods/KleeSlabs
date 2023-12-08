@@ -1,12 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.blay09.mods.kleeslabs.mixin",
+  "package": "net.blay09.mods.kleeslabs.forge.mixin",
   "compatibilityLevel": "JAVA_17",
+  "refmap": "kleeslabs.refmap.json",
   "mixins": [
   ],
   "client": [
-    "LevelRendererAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

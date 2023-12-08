@@ -1,0 +1,24 @@
+{
+  "modid": "concreteplus",
+  "converter": "SimpleSlabConverter",
+  "pattern_search": "concrete_slab_(.+)",
+  "pattern_replace": "concrete_doubleslab_$1",
+  "pattern_slabs": [
+    "concrete_slab_white",
+    "concrete_slab_orange",
+    "concrete_slab_magenta",
+    "concrete_slab_light_blue",
+    "concrete_slab_yellow",
+    "concrete_slab_lime",
+    "concrete_slab_pink",
+    "concrete_slab_gray",
+    "concrete_slab_silver",
+    "concrete_slab_cyan",
+    "concrete_slab_purple",
+    "concrete_slab_blue",
+    "concrete_slab_brown",
+    "concrete_slab_green",
+    "concrete_slab_red",
+    "concrete_slab_black"
+  ]
+}

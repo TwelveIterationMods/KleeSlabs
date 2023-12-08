@@ -1,0 +1,16 @@
+{
+  "modid": "extratrees",
+  "converter": "SmartSlabConverter",
+  "mapped_slabs": {
+    "slabs.0": "slabs.double.0",
+    "slabs.1": "slabs.double.1",
+    "slabs.2": "slabs.double.2",
+    "slabs.3": "slabs.double.3",
+    "slabs.4": "slabs.double.4",
+    "slabs.fireproof.0": "slabs.fireproof.double.0",
+    "slabs.fireproof.1": "slabs.fireproof.double.1",
+    "slabs.fireproof.2": "slabs.fireproof.double.2",
+    "slabs.fireproof.3": "slabs.fireproof.double.3",
+    "slabs.fireproof.4": "slabs.fireproof.double.4"
+  }
+}

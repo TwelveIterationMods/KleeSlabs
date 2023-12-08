@@ -1,0 +1,15 @@
+{
+  "modid": "undergroundbiomes",
+  "converter": "SmartSlabConverter",
+  "pattern_search": "(.+)_halfslab",
+  "pattern_replace": "$1_fullslab",
+  "pattern_slabs": [
+    "igneous_stone_halfslab",
+    "igneous_cobble_halfslab",
+    "igneous_brick_halfslab",
+    "metamorphic_stone_halfslab",
+    "metamorphic_cobble_halfslab",
+    "metamorphic_brick_halfslab",
+    "sedimentary_stone_halfslab"
+  ]
+}
