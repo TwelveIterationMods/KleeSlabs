@@ -1,4 +1,4 @@
-package net.blay09.mods.kleeslabs.compat;
+package net.blay09.mods.kleeslabs.fabric.compat;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
