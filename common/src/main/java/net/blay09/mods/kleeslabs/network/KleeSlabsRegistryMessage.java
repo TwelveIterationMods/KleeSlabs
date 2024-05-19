@@ -1,10 +1,12 @@
 package net.blay09.mods.kleeslabs.network;
 
 import net.blay09.mods.balm.api.Balm;
+import net.blay09.mods.kleeslabs.KleeSlabs;
 import net.blay09.mods.kleeslabs.converter.SlabConverter;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
 import net.blay09.mods.kleeslabs.registry.SlabRegistryData;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
@@ -12,7 +14,9 @@ import net.minecraft.world.level.block.Block;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KleeSlabsRegistryMessage {
+public class KleeSlabsRegistryMessage implements CustomPacketPayload {
+
+    public static CustomPacketPayload.Type<KleeSlabsRegistryMessage> TYPE = new CustomPacketPayload.Type<>(new ResourceLocation(KleeSlabs.MOD_ID, "registry"));
 
     private final boolean isFirst;
     private final List<SlabRegistryData> data;
@@ -22,7 +26,7 @@ public class KleeSlabsRegistryMessage {
         this.data = data;
     }
 
-    public static void encode(KleeSlabsRegistryMessage message, FriendlyByteBuf buf) {
+    public static void encode(FriendlyByteBuf buf, KleeSlabsRegistryMessage message) {
         buf.writeBoolean(message.isFirst);
         buf.writeShort(message.data.size());
         for (SlabRegistryData data : message.data) {
@@ -68,4 +72,8 @@ public class KleeSlabsRegistryMessage {
         }
     }
 
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
+    }
 }

@@ -1,5 +1,6 @@
 package net.blay09.mods.kleeslabs.fabric.client;
 
+import net.blay09.mods.balm.api.EmptyLoadContext;
 import net.blay09.mods.balm.api.client.BalmClient;
 import net.blay09.mods.kleeslabs.KleeSlabs;
 import net.blay09.mods.kleeslabs.client.KleeSlabsClient;
@@ -9,6 +10,6 @@ public class FabricKleeSlabsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        BalmClient.initialize(KleeSlabs.MOD_ID, KleeSlabsClient::initialize);
+        BalmClient.initialize(KleeSlabs.MOD_ID, EmptyLoadContext.INSTANCE, KleeSlabsClient::initialize);
     }
 }

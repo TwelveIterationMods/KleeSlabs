@@ -25,7 +25,7 @@ public class LoginSyncHandler {
             }
         }
 
-        if (subList.size() > 0) {
+        if (!subList.isEmpty()) {
             Balm.getNetworking().sendTo(event.getPlayer(), new KleeSlabsRegistryMessage(isFirst, subList));
         }
     }

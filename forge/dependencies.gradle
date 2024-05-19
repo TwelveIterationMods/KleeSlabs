@@ -1,4 +1,5 @@
 dependencies {
-    // runtimeOnly fg.deobf("curse.maven:terrablender-563928:4205706")
-    // runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:4410599")
+    implementation fg.deobf("net.blay09.mods:balm-forge:${balm_version}") {
+        changing = balm_version.contains("SNAPSHOT")
+    }
 }
