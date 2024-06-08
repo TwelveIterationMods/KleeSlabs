@@ -134,7 +134,7 @@ public class JsonCompatLoader implements ResourceManagerReloadListener {
             name = name.substring(colon + 1);
         }
 
-        Block block = Balm.getRegistries().getBlock(new ResourceLocation(modId, name));
+        Block block = Balm.getRegistries().getBlock(ResourceLocation.fromNamespaceAndPath(modId, name));
         return block != null ? block : Blocks.AIR;
     }
 

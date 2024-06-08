@@ -29,7 +29,7 @@ public class KleeSlabs {
 
         ModNetworking.initialize(Balm.getNetworking());
 
-        Balm.addServerReloadListener(new ResourceLocation(MOD_ID, "json_registry"), new JsonCompatLoader());
+        Balm.addServerReloadListener(ResourceLocation.fromNamespaceAndPath(MOD_ID, "json_registry"), new JsonCompatLoader());
 
         Balm.getEvents().onEvent(ServerStartedEvent.class, SlabDumpHandler::onServerStarted);
         Balm.getEvents().onEvent(PlayerLoginEvent.class, LoginSyncHandler::onPlayerLogin);

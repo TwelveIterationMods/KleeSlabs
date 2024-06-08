@@ -16,7 +16,7 @@ import java.util.List;
 
 public class KleeSlabsRegistryMessage implements CustomPacketPayload {
 
-    public static CustomPacketPayload.Type<KleeSlabsRegistryMessage> TYPE = new CustomPacketPayload.Type<>(new ResourceLocation(KleeSlabs.MOD_ID, "registry"));
+    public static CustomPacketPayload.Type<KleeSlabsRegistryMessage> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(KleeSlabs.MOD_ID, "registry"));
 
     private final boolean isFirst;
     private final List<SlabRegistryData> data;
