@@ -18,12 +18,15 @@ public class SmartSlabConverter implements HorizontalSlabConverter {
                 newState = copyProperty(state, newState, property);
             }
         }
-        return newState.setValue(BlockStateProperties.SLAB_TYPE, slabType);
+        if (newState.hasProperty(BlockStateProperties.SLAB_TYPE)) {
+            return newState.setValue(BlockStateProperties.SLAB_TYPE, slabType);
+        }
+        return newState;
     }
 
     @Override
     public boolean isDoubleSlab(BlockState state) {
-        return state.getValue(BlockStateProperties.SLAB_TYPE) == SlabType.DOUBLE;
+        return state.hasProperty(BlockStateProperties.SLAB_TYPE) && state.getValue(BlockStateProperties.SLAB_TYPE) == SlabType.DOUBLE;
     }
 
     private <T extends Comparable<T>> BlockState copyProperty(BlockState sourceState, BlockState targetState, Property<T> property) {
