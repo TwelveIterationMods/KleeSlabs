@@ -1,10 +1,1 @@
-- Added support for Amendments
-- Added support for Better Archeology
-- Added support for Hearth and Home
-- Added support for Meadow
-- Added support for Naturalist
-- Added support for Philip's Ruins
-- Added support for Regions Unexplored
-- Added support for Ribbits
-- Updated support for Deeper and Darker
-- Enabled compatibility files from Forge on Fabric as well for cases where mods have since been ported 
+- Fixed mod not being client-optional on Fabric
