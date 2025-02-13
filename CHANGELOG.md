@@ -1,1 +1,1 @@
-- Added support for slabs from Cobblemon
+- Fixed mod not being client-optional on Fabric
