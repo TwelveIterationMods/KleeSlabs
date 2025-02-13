@@ -1,2 +1,3 @@
+- Fixed mod not being client-optional on Fabric
 - Added `kleeslabs:slabs` tag, which by default includes `minecraft:slabs`. Blocks in this tag will automatically be considered slabs.
 - The datapack compat files are now deprecated and will be removed in the next Minecraft version.
