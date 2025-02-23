@@ -1,1 +1,1 @@
-- Fixed mod not being client-optional on Fabric
+- Added support for Quark vertical slabs
