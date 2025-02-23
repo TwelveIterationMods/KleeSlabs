@@ -2,8 +2,10 @@ package net.blay09.mods.kleeslabs;
 
 import net.blay09.mods.balm.api.Balm;
 import net.blay09.mods.balm.api.event.BreakBlockEvent;
-import net.blay09.mods.kleeslabs.converter.SlabConverter;
+import net.blay09.mods.kleeslabs.converter.HorizontalSlabConverter;
+import net.blay09.mods.kleeslabs.converter.VerticalSlabConverter;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
+import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
@@ -28,7 +30,8 @@ public class BlockBreakHandler {
         }
 
         BlockHitResult rayTraceResult = rayTrace(event.getPlayer(), Balm.getHooks().getBlockReachDistance(event.getPlayer()));
-        Vec3 hitVec = rayTraceResult.getType() == BlockHitResult.Type.BLOCK ? rayTraceResult.getLocation() : null;
+        final var hitSide = rayTraceResult.getDirection();
+        var hitVec = rayTraceResult.getType() == BlockHitResult.Type.BLOCK ? rayTraceResult.getLocation() : null;
 
         // Relativize the hit vector around the player position
         if (hitVec != null) {
@@ -36,22 +39,39 @@ public class BlockBreakHandler {
         }
 
         BlockState state = event.getState();
-        SlabConverter slabConverter = SlabRegistry.getSlabConverter(state.getBlock());
+        final var slabConverter = SlabRegistry.getSlabConverter(state.getBlock());
         if (slabConverter == null || !slabConverter.isDoubleSlab(state)) {
             return;
         }
 
+
         SlabType hit;
         SlabType stay;
-        if (hitVec != null && hitVec.y > 0.5f) {
-            hit = SlabType.TOP;
-            stay = SlabType.BOTTOM;
+        BlockState dropState;
+        BlockState newState;
+
+        if (slabConverter instanceof HorizontalSlabConverter horizontalSlabConverter) {
+            if (hitVec != null && hitVec.y > 0.5f) {
+                hit = SlabType.TOP;
+                stay = SlabType.BOTTOM;
+            } else {
+                stay = SlabType.TOP;
+                hit = SlabType.BOTTOM;
+            }
+
+            dropState = horizontalSlabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), hit);
+            newState = horizontalSlabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), stay);
+        } else if (slabConverter instanceof VerticalSlabConverter verticalSlabConverter) {
+            if (hitSide.getAxis() != Direction.Axis.Y) {
+                dropState = verticalSlabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), hitSide.getOpposite());
+                newState = verticalSlabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), hitSide);
+            } else {
+                return;
+            }
         } else {
-            stay = SlabType.TOP;
-            hit = SlabType.BOTTOM;
+            return;
         }
 
-        BlockState dropState = slabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), hit);
         Level level = event.getLevel();
         if (!level.isClientSide() && event.getPlayer().hasCorrectToolForDrops(dropState) && !event.getPlayer().getAbilities().instabuild) {
             Item slabItem = Item.byBlock(dropState.getBlock());
@@ -61,13 +81,16 @@ public class BlockBreakHandler {
                 double xOffset = level.getRandom().nextFloat() * scale + 1f - scale * 0.5;
                 double yOffset = level.getRandom().nextFloat() * scale + 1f - scale * 0.5;
                 double zOffset = level.getRandom().nextFloat() * scale + 1f - scale * 0.5;
-                ItemEntity entityItem = new ItemEntity(level, event.getPos().getX() + xOffset, event.getPos().getY() + yOffset, event.getPos().getZ() + zOffset, itemStack);
+                ItemEntity entityItem = new ItemEntity(level,
+                        event.getPos().getX() + xOffset,
+                        event.getPos().getY() + yOffset,
+                        event.getPos().getZ() + zOffset,
+                        itemStack);
                 entityItem.setPickUpDelay(10);
                 level.addFreshEntity(entityItem);
             }
         }
 
-        BlockState newState = slabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), stay);
         event.getLevel().setBlock(event.getPos(), newState, 1 | 2);
         event.setCanceled(true);
     }
