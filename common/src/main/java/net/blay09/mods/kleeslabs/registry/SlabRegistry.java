@@ -25,12 +25,12 @@ public class SlabRegistry {
 
     public static void registerSlab(SlabRegistryData data) {
         try {
-            Constructor<?> constructor = data.getConverterClass().getConstructor(Block.class);
-            SlabConverter converter = (SlabConverter) constructor.newInstance(data.getSingleSlab());
+            Constructor<?> constructor = data.getConverterClass().getConstructor();
+            final var converter = (SlabConverter) constructor.newInstance();
             registerSlabConverter(data.getDoubleSlab(), converter);
             slabRegistry.add(data);
         } catch (NoSuchMethodException e) {
-            KleeSlabs.logger.error("Slab converter class does not have a constructor that takes a Block argument: {}", data.getConverterClass());
+            KleeSlabs.logger.error("Slab converter class does not have a no-arg constructor: {}", data.getConverterClass());
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
             KleeSlabs.logger.error("Slab converter class constructor invocation failed: {}", data.getConverterClass(), e);
         }

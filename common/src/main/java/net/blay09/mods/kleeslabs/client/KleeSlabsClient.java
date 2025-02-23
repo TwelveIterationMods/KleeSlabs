@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.blay09.mods.balm.api.Balm;
 import net.blay09.mods.balm.api.event.client.BlockHighlightDrawEvent;
 import net.blay09.mods.kleeslabs.KleeSlabs;
-import net.blay09.mods.kleeslabs.converter.SlabConverter;
+import net.blay09.mods.kleeslabs.converter.HorizontalSlabConverter;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -40,8 +40,8 @@ public class KleeSlabsClient {
 
         BlockPos pos = hitResult.getBlockPos();
         BlockState state = player.level().getBlockState(pos);
-        SlabConverter slabConverter = SlabRegistry.getSlabConverter(state);
-        if (slabConverter != null && slabConverter.isDoubleSlab(state)) {
+        final var slabConverter = SlabRegistry.getSlabConverter(state);
+        if (slabConverter instanceof HorizontalSlabConverter && slabConverter.isDoubleSlab(state)) {
             AABB halfAABB = new AABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 0.5, pos.getZ() + 1);
             if (hitResult.getLocation().y - (double) pos.getY() > 0.5) {
                 halfAABB = halfAABB.move(0, 0.5, 0);
