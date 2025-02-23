@@ -3,23 +3,16 @@ package net.blay09.mods.kleeslabs.converter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.block.state.properties.SlabType;
 
-public class SmartSlabConverter implements SlabConverter {
-
-    private final Block singleSlab;
-
-    public SmartSlabConverter(Block singleSlab) {
-        this.singleSlab = singleSlab;
-    }
+public class SmartSlabConverter implements HorizontalSlabConverter {
 
     @Override
     public BlockState getSingleSlab(BlockState state, Level level, BlockPos pos, Player player, SlabType slabType) {
-        BlockState newState = singleSlab.defaultBlockState();
+        BlockState newState = state.getBlock().defaultBlockState();
         for (Property<?> property : state.getProperties()) {
             if (newState.getProperties().contains(property)) {
                 newState = copyProperty(state, newState, property);

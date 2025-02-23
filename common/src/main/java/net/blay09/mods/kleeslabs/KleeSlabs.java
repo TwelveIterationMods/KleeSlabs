@@ -3,20 +3,13 @@ package net.blay09.mods.kleeslabs;
 import net.blay09.mods.balm.api.Balm;
 import net.blay09.mods.balm.api.event.BreakBlockEvent;
 import net.blay09.mods.balm.api.event.PlayerLoginEvent;
-import net.blay09.mods.balm.api.event.client.ClientStartedEvent;
 import net.blay09.mods.balm.api.event.server.ServerStartedEvent;
-import net.blay09.mods.kleeslabs.network.KleeSlabsRegistryMessage;
 import net.blay09.mods.kleeslabs.network.ModNetworking;
-import net.blay09.mods.kleeslabs.registry.SlabRegistry;
-import net.blay09.mods.kleeslabs.registry.SlabRegistryData;
 import net.blay09.mods.kleeslabs.registry.json.JsonCompatLoader;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class KleeSlabs {
 

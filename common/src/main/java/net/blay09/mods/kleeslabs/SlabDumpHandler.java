@@ -21,18 +21,31 @@ public class SlabDumpHandler {
     }
 
     public static void dumpSlabs() {
-        Map<String, List<ResourceLocation>> slabsByMod = BuiltInRegistries.BLOCK.keySet()
+        final var slabsByMod = BuiltInRegistries.BLOCK.keySet()
                 .stream()
                 .filter(itemName -> itemName.getPath().endsWith("_slab"))
                 .collect(Collectors.groupingBy(ResourceLocation::getNamespace));
+        final var verticalSlabsByMod = BuiltInRegistries.BLOCK.keySet()
+                .stream()
+                .filter(itemName -> itemName.getPath().endsWith("_slab") && itemName.getPath().contains("vertical"))
+                .collect(Collectors.groupingBy(ResourceLocation::getNamespace));
 
-        for (Map.Entry<String, List<ResourceLocation>> slabs : slabsByMod.entrySet()) {
-            String slabsOutput = slabs.getValue().stream()
+        for (final var slabs : slabsByMod.entrySet()) {
+            final var slabsOutput = slabs.getValue().stream()
                     .map(ResourceLocation::getPath)
                     .map(it -> "\"" + it + "\"")
                     .sorted()
                     .collect(Collectors.joining(",\n"));
             log.info("Slabs from mod {}:\n{}", slabs.getKey(), slabsOutput);
+        }
+
+        for (final var verticalSlabs : verticalSlabsByMod.entrySet()) {
+            final var slabsOutput = verticalSlabs.getValue().stream()
+                    .map(ResourceLocation::getPath)
+                    .map(it -> "\"" + it + "\"")
+                    .sorted()
+                    .collect(Collectors.joining(",\n"));
+            log.info("Vertical slabs from mod {}:\n{}", verticalSlabs.getKey(), slabsOutput);
         }
     }
 }
