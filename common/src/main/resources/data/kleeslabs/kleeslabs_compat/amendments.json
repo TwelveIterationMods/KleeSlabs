@@ -1,8 +1,0 @@
-{
-  "modid": "amendments",
-  "silent": true,
-  "converter": "SmartSlabConverter",
-  "slabs": [
-    "carpet_slab"
-  ]
-}

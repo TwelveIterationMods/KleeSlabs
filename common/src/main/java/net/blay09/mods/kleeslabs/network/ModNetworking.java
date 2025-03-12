@@ -7,7 +7,6 @@ public class ModNetworking {
 
     public static void initialize(BalmNetworking networking) {
         networking.allowServerOnly(KleeSlabs.MOD_ID);
-        networking.registerClientboundPacket(KleeSlabsRegistryMessage.TYPE, KleeSlabsRegistryMessage.class, KleeSlabsRegistryMessage::encode, KleeSlabsRegistryMessage::decode, KleeSlabsRegistryMessage::handle);
     }
 
 }

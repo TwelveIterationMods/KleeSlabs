@@ -1,9 +1,0 @@
-{
-  "modid": "betterarcheology",
-  "silent": true,
-  "converter": "SmartSlabConverter",
-  "slabs": [
-    "cracked_mud_brick_slab",
-    "rotten_slab"
-  ]
-}

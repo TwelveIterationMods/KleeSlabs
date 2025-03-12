@@ -1,8 +1,0 @@
-{
-  "modid": "ribbits",
-  "silent": true,
-  "converter": "SmartSlabConverter",
-  "slabs": [
-    "mossy_oak_planks_slab"
-  ]
-}
