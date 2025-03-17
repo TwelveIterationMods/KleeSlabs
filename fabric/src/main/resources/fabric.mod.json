@@ -27,9 +27,6 @@
     ],
     "fabric-datagen": [
       "net.blay09.mods.kleeslabs.fabric.datagen.ModDataGenerator"
-    ],
-    "modmenu": [
-      "net.blay09.mods.kleeslabs.fabric.compat.ModMenuIntegration"
     ]
   },
   "mixins": [

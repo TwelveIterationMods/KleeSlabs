@@ -1,15 +1,22 @@
 package net.blay09.mods.kleeslabs;
 
 import net.blay09.mods.balm.api.Balm;
+import net.blay09.mods.balm.api.config.reflection.Comment;
+import net.blay09.mods.balm.api.config.reflection.Config;
 
+@Config(KleeSlabs.MOD_ID)
 public class KleeSlabsConfig {
+    @Comment("Control whether KleeSlabs should trigger ALWAYS, ONLY_WHEN_SNEAKING or ONLY_WHEN_NOT_SNEAKING")
+    public KleeSlabsMode mode = KleeSlabsMode.ALWAYS;
 
-    public static KleeSlabsConfigData getActive() {
-        return Balm.getConfig().getActive(KleeSlabsConfigData.class);
+    @Comment("Set to true to have KleeSlabs dump a list of items containing the word 'slab' in their name upon world load")
+    public boolean dumpSlabs = false;
+
+    public static KleeSlabsConfig getActive() {
+        return Balm.getConfig().getActiveConfig(KleeSlabsConfig.class);
     }
 
     public static void initialize() {
-        Balm.getConfig().registerConfig(KleeSlabsConfigData.class, null);
+        Balm.getConfig().registerConfig(KleeSlabsConfig.class);
     }
-
 }
