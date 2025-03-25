@@ -7,7 +7,9 @@ import net.blay09.mods.kleeslabs.converter.VerticalSlabConverter;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -29,7 +31,8 @@ public class BlockBreakHandler {
             return;
         }
 
-        BlockHitResult rayTraceResult = rayTrace(event.getPlayer(), Balm.getHooks().getBlockReachDistance(event.getPlayer()));
+        final var blockReachDistance = event.getPlayer().getAttributeValue(Attributes.BLOCK_INTERACTION_RANGE);
+        BlockHitResult rayTraceResult = rayTrace(event.getPlayer(), blockReachDistance);
         final var hitSide = rayTraceResult.getDirection();
         var hitVec = rayTraceResult.getType() == BlockHitResult.Type.BLOCK ? rayTraceResult.getLocation() : null;
 
