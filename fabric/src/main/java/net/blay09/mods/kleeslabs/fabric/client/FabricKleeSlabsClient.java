@@ -10,6 +10,6 @@ public class FabricKleeSlabsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        BalmClient.initialize(KleeSlabs.MOD_ID, EmptyLoadContext.INSTANCE, KleeSlabsClient::initialize);
+        BalmClient.initializeMod(KleeSlabs.MOD_ID, EmptyLoadContext.INSTANCE, KleeSlabsClient::initialize);
     }
 }
