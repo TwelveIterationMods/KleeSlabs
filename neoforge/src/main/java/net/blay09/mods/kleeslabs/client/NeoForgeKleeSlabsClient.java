@@ -12,7 +12,7 @@ public class NeoForgeKleeSlabsClient {
 
     public NeoForgeKleeSlabsClient(IEventBus eventBus) {
         final var context = new NeoForgeLoadContext(eventBus);
-        BalmClient.initialize(KleeSlabs.MOD_ID, context, KleeSlabsClient::initialize);
+        BalmClient.initializeMod(KleeSlabs.MOD_ID, context, KleeSlabsClient::initialize);
     }
 
 }
