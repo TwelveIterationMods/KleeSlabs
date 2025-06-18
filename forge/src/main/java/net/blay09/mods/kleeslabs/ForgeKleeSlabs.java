@@ -12,7 +12,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 public class ForgeKleeSlabs {
 
     public ForgeKleeSlabs(FMLJavaModLoadingContext context) {
-        final var loadContext = new ForgeLoadContext(context.getModEventBus());
+        final var loadContext = new ForgeLoadContext(context.getModBusGroup());
         Balm.initializeMod(KleeSlabs.MOD_ID, loadContext, KleeSlabs::initialize);
         if (FMLEnvironment.dist.isClient()) {
             BalmClient.initializeMod(KleeSlabs.MOD_ID, loadContext, KleeSlabsClient::initialize);
