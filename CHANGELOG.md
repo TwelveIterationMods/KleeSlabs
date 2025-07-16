@@ -1,1 +1,2 @@
-- Added support for Quark vertical slabs
+- Added support for Enlightend slabs
+- Added support for Enchanted Vertical Slabs
