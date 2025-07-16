@@ -1,1 +1,1 @@
-- Updated to Minecraft 1.21.7
+- Added support for Enchanted Vertical Slabs
