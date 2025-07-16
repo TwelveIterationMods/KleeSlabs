@@ -4,6 +4,7 @@ import net.blay09.mods.balm.api.Balm;
 import net.blay09.mods.balm.api.event.BreakBlockEvent;
 import net.blay09.mods.balm.api.event.server.ServerStartedEvent;
 import net.blay09.mods.kleeslabs.converter.DefaultSlabConverter;
+import net.blay09.mods.kleeslabs.converter.EnchantedVerticalSlabConverter;
 import net.blay09.mods.kleeslabs.converter.QuarkVerticalSlabConverter;
 import net.blay09.mods.kleeslabs.network.ModNetworking;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
@@ -18,6 +19,7 @@ public class KleeSlabs {
         KleeSlabsConfig.initialize();
         SlabRegistry.registerSlabConverter(ModBlockTags.SLABS, new DefaultSlabConverter());
         SlabRegistry.registerSlabConverter(ModBlockTags.QUARK_VERTICAL_SLABS, new QuarkVerticalSlabConverter());
+        SlabRegistry.registerSlabConverter(ModBlockTags.ENCHANTED_VERTICAL_SLABS, new EnchantedVerticalSlabConverter());
 
         ModNetworking.initialize(Balm.getNetworking());
 
