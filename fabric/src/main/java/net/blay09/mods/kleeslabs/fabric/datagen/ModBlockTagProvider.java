@@ -21,7 +21,7 @@ public class ModBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
     @Override
     protected void addTags(HolderLookup.Provider arg) {
         tag(ModBlockTags.SLABS).addOptionalTag(BlockTags.SLABS);
-        tag(ModBlockTags.VERTICAL_SLABS).addOptionalTag(ModBlockTags.QUARK_VERTICAL_SLABS);
+        tag(ModBlockTags.VERTICAL_SLABS).addOptionalTag(ModBlockTags.QUARK_VERTICAL_SLABS).addOptionalTag(ModBlockTags.ENCHANTED_VERTICAL_SLABS);
         getOrCreateRawBuilder(ModBlockTags.QUARK_VERTICAL_SLABS)
                 .addOptionalElement(quark("acacia_vertical_slab"))
                 .addOptionalElement(quark("ancient_planks_vertical_slab"))
@@ -145,10 +145,73 @@ public class ModBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                 .addOptionalElement(quark("weathered_cut_copper_vertical_slab"))
                 .addOptionalElement(quark("white_shingles_vertical_slab"))
                 .addOptionalElement(quark("yellow_shingles_vertical_slab"));
+        getOrCreateRawBuilder(ModBlockTags.ENCHANTED_VERTICAL_SLABS)
+                .addOptionalElement(enchantedVerticalSlabs("vertical_acacia_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_andesite_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_bamboo_mosaic_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_bamboo_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_birch_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_blackstone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_brick_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_cherry_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_cobbled_deepslate_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_cobblestone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_crimson_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_cut_copper_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_cut_red_sandstone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_cut_sandstone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_dark_oak_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_dark_prismarine_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_deepslate_brick_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_deepslate_tile_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_diorite_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_end_stone_brick_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_exposed_cut_copper_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_granite_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_jungle_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_mangrove_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_mossy_cobblestone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_mossy_stone_brick_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_mud_brick_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_nether_brick_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_oak_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_oxidized_cut_copper_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_petrified_oak_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_polished_andesite_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_polished_blackstone_brick_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_polished_blackstone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_polished_deepslate_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_polished_diorite_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_polished_granite_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_prismarine_brick_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_prismarine_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_purpur_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_quartz_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_red_nether_brick_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_red_sandstone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_sandstone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_smooth_quartz_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_smooth_red_sandstone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_smooth_sandstone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_smooth_stone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_spruce_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_stone_brick_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_stone_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_warped_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_waxed_cut_copper_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_waxed_exposed_cut_copper_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_waxed_oxidized_cut_copper_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_waxed_weathered_cut_copper_slab"))
+                .addOptionalElement(enchantedVerticalSlabs("vertical_weathered_cut_copper_slab"));
+
     }
 
     private static ResourceLocation quark(String path) {
         return ResourceLocation.fromNamespaceAndPath("quark", path);
+    }
+
+    private static ResourceLocation enchantedVerticalSlabs(String path) {
+        return ResourceLocation.fromNamespaceAndPath("enchanted-vertical-slabs", path);
     }
 
 }
