@@ -14,7 +14,7 @@ public class LoginSyncHandler {
         boolean isFirst = true;
         final int pageSize = 20;
         List<SlabRegistryData> subList = new ArrayList<>();
-        List<SlabRegistryData> entries = SlabRegistry.getSlabEntries();
+        List<SlabRegistryData> entries = List.copyOf(SlabRegistry.getSlabEntries());
         for (SlabRegistryData entry : entries) {
             subList.add(entry);
 
