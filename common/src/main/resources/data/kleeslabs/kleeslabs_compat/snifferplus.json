@@ -1,0 +1,8 @@
+{
+  "modid": "snifferplus",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "stone_pine_slab"
+  ]
+}

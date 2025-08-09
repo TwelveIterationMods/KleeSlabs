@@ -1,0 +1,9 @@
+{
+  "modid": "beachparty",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "palm_slab",
+    "thatch_slab"
+  ]
+}

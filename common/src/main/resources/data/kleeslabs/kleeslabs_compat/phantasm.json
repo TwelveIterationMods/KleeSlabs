@@ -1,0 +1,13 @@
+{
+  "modid": "phantasm",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "cirite_bricks_slab",
+    "crystal_tiles_slab",
+    "polished_obsidian_bricks_slab",
+    "pream_slab",
+    "raw_purpur_bricks_slab",
+    "void_crystal_tiles_slab"
+  ]
+}
