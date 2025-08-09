@@ -211,7 +211,7 @@ public class ModBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
     }
 
     private static ResourceLocation enchantedVerticalSlabs(String path) {
-        return ResourceLocation.fromNamespaceAndPath("enchanted-vertical-slabs", path);
+        return ResourceLocation.fromNamespaceAndPath("evs", path);
     }
 
 }
