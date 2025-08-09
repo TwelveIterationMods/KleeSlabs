@@ -1,0 +1,232 @@
+{
+  "values": [
+    {
+      "id": "nemos_vertical_slabs:acacia_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:acacia_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:andesite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:bamboo_mosaic_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:bamboo_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:birch_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:blackstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:cherry_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:cobbled_deepslate_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:cobblestone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:crimson_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:cut_red_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:cut_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:dark_oak_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:dark_prismarine_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:deepslate_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:deepslate_tile_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:diorite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:end_stone_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:exposed_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:granite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:jungle_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:mangrove_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:mossy_cobblestone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:mossy_stone_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:mud_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:nether_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:oak_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:oxidized_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:polished_andesite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:polished_blackstone_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:polished_blackstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:polished_deepslate_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:polished_diorite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:polished_granite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:prismarine_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:prismarine_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:purpur_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:quartz_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:red_nether_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:red_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:smooth_quartz_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:smooth_red_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:smooth_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:smooth_stone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:spruce_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:stone_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:stone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:warped_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:waxed_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:waxed_exposed_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:waxed_oxidized_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:waxed_weathered_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "nemos_vertical_slabs:weathered_cut_copper_vertical_slab",
+      "required": false
+    }
+  ]
+}

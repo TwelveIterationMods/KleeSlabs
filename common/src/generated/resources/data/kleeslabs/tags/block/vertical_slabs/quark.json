@@ -1,0 +1,492 @@
+{
+  "values": [
+    {
+      "id": "quark:acacia_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:ancient_planks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:andesite_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:andesite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:azalea_planks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:bamboo_mosaic_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:bamboo_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:birch_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:black_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:blackstone_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:blackstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:blossom_planks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:blue_nether_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:blue_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:brown_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:calcite_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:calcite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:cherry_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:cobbled_deepslate_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:cobblestone_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:cobblestone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:crimson_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:cut_red_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:cut_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:cut_soul_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:cyan_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:dark_oak_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:dark_prismarine_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:deepslate_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:deepslate_tile_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:diorite_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:diorite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:dirt_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:dripstone_block_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:dripstone_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:duskbound_block_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:end_stone_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:exposed_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:granite_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:granite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:gray_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:green_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:iron_plate_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:jasper_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:jasper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:jungle_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:light_blue_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:light_gray_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:lime_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:limestone_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:limestone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:magenta_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:mangrove_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:midori_block_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:mossy_cobblestone_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:mossy_cobblestone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:mossy_stone_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:mud_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:myalite_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:myalite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:nether_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:netherrack_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:oak_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:orange_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:oxidized_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:permafrost_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:permafrost_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:pink_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_andesite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_blackstone_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_blackstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_calcite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_deepslate_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_diorite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_dripstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_granite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_jasper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_limestone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_myalite_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_shale_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:polished_tuff_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:prismarine_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:prismarine_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:purple_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:purpur_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:quartz_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:raw_copper_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:raw_gold_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:raw_iron_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:red_nether_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:red_sandstone_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:red_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:red_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:rusty_iron_plate_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:sandstone_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:shale_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:shale_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:smooth_quartz_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:smooth_red_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:smooth_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:smooth_soul_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:smooth_stone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:soul_sandstone_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:soul_sandstone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:spruce_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:stone_brick_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:stone_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:thatch_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:tuff_bricks_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:tuff_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:warped_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:waxed_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:waxed_exposed_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:waxed_oxidized_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:waxed_weathered_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:weathered_cut_copper_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:white_shingles_vertical_slab",
+      "required": false
+    },
+    {
+      "id": "quark:yellow_shingles_vertical_slab",
+      "required": false
+    }
+  ]
+}

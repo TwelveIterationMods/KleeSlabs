@@ -1,0 +1,232 @@
+{
+  "values": [
+    {
+      "id": "evs:vertical_acacia_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_andesite_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_bamboo_mosaic_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_bamboo_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_birch_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_blackstone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_brick_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_cherry_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_cobbled_deepslate_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_cobblestone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_crimson_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_cut_copper_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_cut_red_sandstone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_cut_sandstone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_dark_oak_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_dark_prismarine_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_deepslate_brick_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_deepslate_tile_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_diorite_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_end_stone_brick_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_exposed_cut_copper_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_granite_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_jungle_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_mangrove_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_mossy_cobblestone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_mossy_stone_brick_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_mud_brick_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_nether_brick_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_oak_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_oxidized_cut_copper_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_petrified_oak_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_polished_andesite_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_polished_blackstone_brick_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_polished_blackstone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_polished_deepslate_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_polished_diorite_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_polished_granite_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_prismarine_brick_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_prismarine_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_purpur_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_quartz_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_red_nether_brick_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_red_sandstone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_sandstone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_smooth_quartz_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_smooth_red_sandstone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_smooth_sandstone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_smooth_stone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_spruce_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_stone_brick_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_stone_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_warped_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_waxed_cut_copper_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_waxed_exposed_cut_copper_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_waxed_oxidized_cut_copper_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_waxed_weathered_cut_copper_slab",
+      "required": false
+    },
+    {
+      "id": "evs:vertical_weathered_cut_copper_slab",
+      "required": false
+    }
+  ]
+}

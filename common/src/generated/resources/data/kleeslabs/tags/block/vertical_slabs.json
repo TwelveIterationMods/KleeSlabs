@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "#kleeslabs:vertical_slabs/quark",
+      "required": false
+    },
+    {
+      "id": "#kleeslabs:vertical_slabs/enchanted_vertical_slabs",
+      "required": false
+    },
+    {
+      "id": "#kleeslabs:vertical_slabs/nemos_vertical_slabs",
+      "required": false
+    }
+  ]
+}
