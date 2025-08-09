@@ -1,1 +1,2 @@
-- Updated to Minecraft 1.21.8
+- Added support for Nemo's Vertical Slabs
+- Fixed Enchanted Vertical Slabs and Quark Vertical Slabs not being supported
