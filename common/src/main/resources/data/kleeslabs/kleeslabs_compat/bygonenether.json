@@ -1,0 +1,10 @@
+{
+  "modid": "bygonenether",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "cracked_withered_blackstone_slab",
+    "warped_nether_brick_slab",
+    "withered_blackstone_slab"
+  ]
+}

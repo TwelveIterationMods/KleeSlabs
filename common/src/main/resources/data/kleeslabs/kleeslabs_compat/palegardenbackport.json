@@ -1,0 +1,9 @@
+{
+  "modid": "palegardnebackport",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "pale_oak_slab",
+    "resin_brick_slab"
+  ]
+}

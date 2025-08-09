@@ -1,0 +1,8 @@
+{
+  "modid": "suppsquared",
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "daub_frame_slab",
+    "daub_slab"
+  ]
+}

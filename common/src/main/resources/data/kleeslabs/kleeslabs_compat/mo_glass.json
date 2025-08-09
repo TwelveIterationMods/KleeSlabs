@@ -1,0 +1,25 @@
+{
+  "modid": "mo_glass",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "black_stained_glass_slab",
+    "blue_stained_glass_slab",
+    "brown_stained_glass_slab",
+    "cyan_stained_glass_slab",
+    "glass_slab",
+    "gray_stained_glass_slab",
+    "green_stained_glass_slab",
+    "light_blue_stained_glass_slab",
+    "light_gray_stained_glass_slab",
+    "lime_stained_glass_slab",
+    "magenta_stained_glass_slab",
+    "orange_stained_glass_slab",
+    "pink_stained_glass_slab",
+    "purple_stained_glass_slab",
+    "red_stained_glass_slab",
+    "tinted_glass_slab",
+    "white_stained_glass_slab",
+    "yellow_stained_glass_slab"
+  ]
+}

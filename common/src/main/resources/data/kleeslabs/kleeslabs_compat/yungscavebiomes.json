@@ -1,0 +1,9 @@
+{
+  "modid": "yungscavebiomes",
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "ancient_sandstone_slab",
+    "cut_ancient_sandstone_slab",
+    "smooth_ancient_sandstone_slab"
+  ]
+}

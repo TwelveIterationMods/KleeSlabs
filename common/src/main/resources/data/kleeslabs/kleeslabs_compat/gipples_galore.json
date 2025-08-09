@@ -1,0 +1,11 @@
+{
+  "modid": "gipples_galore",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "amoebalith_brick_slab",
+    "amoebalith_slab",
+    "gelatite_brick_slab",
+    "gelatite_slab"
+  ]
+}
