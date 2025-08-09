@@ -8,3 +8,4 @@
 - Added support for Sniffer Plus
 - Added support for Suppsquared
 - Added support for Yung's Cave Biomes
+- Fixed support for Enchanted Vertical Slabs
