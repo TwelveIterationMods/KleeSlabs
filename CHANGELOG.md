@@ -1,3 +1,4 @@
+- Added support for Nemo's Vertical Slabs
 - Added support for Beach Party
 - Added support for Bygone Nether
 - Added support for Gipples Galore
