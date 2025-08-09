@@ -21,7 +21,10 @@ public class ModBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
     @Override
     protected void addTags(HolderLookup.Provider arg) {
         tag(ModBlockTags.SLABS).addOptionalTag(BlockTags.SLABS);
-        tag(ModBlockTags.VERTICAL_SLABS).addOptionalTag(ModBlockTags.QUARK_VERTICAL_SLABS).addOptionalTag(ModBlockTags.ENCHANTED_VERTICAL_SLABS);
+        tag(ModBlockTags.VERTICAL_SLABS)
+                .addOptionalTag(ModBlockTags.QUARK_VERTICAL_SLABS)
+                .addOptionalTag(ModBlockTags.ENCHANTED_VERTICAL_SLABS)
+                .addOptionalTag(ModBlockTags.NEMOS_VERTICAL_SLABS);
         getOrCreateRawBuilder(ModBlockTags.QUARK_VERTICAL_SLABS)
                 .addOptionalElement(quark("acacia_vertical_slab"))
                 .addOptionalElement(quark("ancient_planks_vertical_slab"))
@@ -203,7 +206,64 @@ public class ModBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                 .addOptionalElement(enchantedVerticalSlabs("vertical_waxed_oxidized_cut_copper_slab"))
                 .addOptionalElement(enchantedVerticalSlabs("vertical_waxed_weathered_cut_copper_slab"))
                 .addOptionalElement(enchantedVerticalSlabs("vertical_weathered_cut_copper_slab"));
-
+        getOrCreateRawBuilder(ModBlockTags.NEMOS_VERTICAL_SLABS)
+                .addOptionalElement(nemosVerticalSlabs("acacia_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("acacia_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("andesite_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("bamboo_mosaic_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("bamboo_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("birch_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("blackstone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("brick_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("cherry_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("cobbled_deepslate_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("cobblestone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("crimson_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("cut_copper_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("cut_red_sandstone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("cut_sandstone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("dark_oak_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("dark_prismarine_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("deepslate_brick_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("deepslate_tile_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("diorite_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("end_stone_brick_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("exposed_cut_copper_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("granite_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("jungle_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("mangrove_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("mossy_cobblestone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("mossy_stone_brick_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("mud_brick_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("nether_brick_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("oak_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("oxidized_cut_copper_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("polished_andesite_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("polished_blackstone_brick_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("polished_blackstone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("polished_deepslate_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("polished_diorite_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("polished_granite_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("prismarine_brick_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("prismarine_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("purpur_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("quartz_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("red_nether_brick_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("red_sandstone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("sandstone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("smooth_quartz_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("smooth_red_sandstone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("smooth_sandstone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("smooth_stone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("spruce_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("stone_brick_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("stone_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("warped_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("waxed_cut_copper_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("waxed_exposed_cut_copper_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("waxed_oxidized_cut_copper_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("waxed_weathered_cut_copper_vertical_slab"))
+                .addOptionalElement(nemosVerticalSlabs("weathered_cut_copper_vertical_slab"));
     }
 
     private static ResourceLocation quark(String path) {
@@ -212,6 +272,10 @@ public class ModBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
 
     private static ResourceLocation enchantedVerticalSlabs(String path) {
         return ResourceLocation.fromNamespaceAndPath("evs", path);
+    }
+
+    private static ResourceLocation nemosVerticalSlabs(String path) {
+        return ResourceLocation.fromNamespaceAndPath("nemos_vertical_slabs", path);
     }
 
 }

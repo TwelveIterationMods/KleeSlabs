@@ -11,4 +11,5 @@ public class ModBlockTags {
     public static final TagKey<Block> VERTICAL_SLABS = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(KleeSlabs.MOD_ID, "vertical_slabs"));
     public static final TagKey<Block> QUARK_VERTICAL_SLABS = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(KleeSlabs.MOD_ID, "vertical_slabs/quark"));
     public static final TagKey<Block> ENCHANTED_VERTICAL_SLABS = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(KleeSlabs.MOD_ID, "vertical_slabs/enchanted_vertical_slabs"));
+    public static final TagKey<Block> NEMOS_VERTICAL_SLABS = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(KleeSlabs.MOD_ID, "vertical_slabs/nemos_vertical_slabs"));
 }
