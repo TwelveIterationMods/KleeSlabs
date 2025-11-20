@@ -7,7 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 
@@ -266,16 +266,16 @@ public class ModBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                 .addOptionalElement(nemosVerticalSlabs("weathered_cut_copper_vertical_slab"));
     }
 
-    private static ResourceLocation quark(String path) {
-        return ResourceLocation.fromNamespaceAndPath("quark", path);
+    private static Identifier quark(String path) {
+        return Identifier.fromNamespaceAndPath("quark", path);
     }
 
-    private static ResourceLocation enchantedVerticalSlabs(String path) {
-        return ResourceLocation.fromNamespaceAndPath("evs", path);
+    private static Identifier enchantedVerticalSlabs(String path) {
+        return Identifier.fromNamespaceAndPath("evs", path);
     }
 
-    private static ResourceLocation nemosVerticalSlabs(String path) {
-        return ResourceLocation.fromNamespaceAndPath("nemos_vertical_slabs", path);
+    private static Identifier nemosVerticalSlabs(String path) {
+        return Identifier.fromNamespaceAndPath("nemos_vertical_slabs", path);
     }
 
 }

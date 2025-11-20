@@ -1,11 +1,13 @@
 package net.blay09.mods.kleeslabs;
 
-import net.blay09.mods.balm.api.Balm;
-import net.blay09.mods.balm.api.event.BreakBlockEvent;
+import net.blay09.mods.balm.Balm;
+import net.blay09.mods.balm.platform.event.EventHandling;
 import net.blay09.mods.kleeslabs.converter.HorizontalSlabConverter;
 import net.blay09.mods.kleeslabs.converter.VerticalSlabConverter;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -14,39 +16,39 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 public class BlockBreakHandler {
 
-    public static void onBreakBlock(BreakBlockEvent event) {
-        if (Balm.getHooks().isFakePlayer(event.getPlayer())) {
-            return;
+    public static EventHandling onBreakBlock(LevelAccessor level, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, @Nullable Player player) {
+        if (Balm.hooks().isFakePlayer(player)) {
+            return EventHandling.RESUME;
         }
 
-        if (!KleeSlabs.isPlayerKleeSlabbing(event.getPlayer())) {
-            return;
+        if (!KleeSlabs.isPlayerKleeSlabbing(player)) {
+            return EventHandling.RESUME;
         }
 
-        final var blockReachDistance = event.getPlayer().getAttributeValue(Attributes.BLOCK_INTERACTION_RANGE);
-        BlockHitResult rayTraceResult = rayTrace(event.getPlayer(), blockReachDistance);
+        final var blockReachDistance = player.getAttributeValue(Attributes.BLOCK_INTERACTION_RANGE);
+        BlockHitResult rayTraceResult = rayTrace(player, blockReachDistance);
         final var hitSide = rayTraceResult.getDirection();
         var hitVec = rayTraceResult.getType() == BlockHitResult.Type.BLOCK ? rayTraceResult.getLocation() : null;
 
         // Relativize the hit vector around the player position
         if (hitVec != null) {
-            hitVec = hitVec.add(-event.getPos().getX(), -event.getPos().getY(), -event.getPos().getZ());
+            hitVec = hitVec.add(-pos.getX(), -pos.getY(), -pos.getZ());
         }
 
-        BlockState state = event.getState();
         final var slabConverter = SlabRegistry.getSlabConverter(state).orElse(null);
         if (slabConverter == null || !slabConverter.isDoubleSlab(state)) {
-            return;
+            return EventHandling.RESUME;
         }
-
 
         SlabType hit;
         SlabType stay;
@@ -62,21 +64,20 @@ public class BlockBreakHandler {
                 hit = SlabType.BOTTOM;
             }
 
-            dropState = horizontalSlabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), hit);
-            newState = horizontalSlabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), stay);
+            dropState = horizontalSlabConverter.getSingleSlab(state, level, pos, player, hit);
+            newState = horizontalSlabConverter.getSingleSlab(state, level, pos, player, stay);
         } else if (slabConverter instanceof VerticalSlabConverter verticalSlabConverter) {
             if (hitSide.getAxis() != Direction.Axis.Y) {
-                dropState = verticalSlabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), hitSide.getOpposite());
-                newState = verticalSlabConverter.getSingleSlab(event.getState(), event.getLevel(), event.getPos(), event.getPlayer(), hitSide);
+                dropState = verticalSlabConverter.getSingleSlab(state, level, pos, player, hitSide.getOpposite());
+                newState = verticalSlabConverter.getSingleSlab(state, level, pos, player, hitSide);
             } else {
-                return;
+                return EventHandling.RESUME;
             }
         } else {
-            return;
+            return EventHandling.RESUME;
         }
 
-        Level level = event.getLevel();
-        if (!level.isClientSide() && event.getPlayer().hasCorrectToolForDrops(dropState) && !event.getPlayer().getAbilities().instabuild) {
+        if (level instanceof ServerLevel serverLevel && player.hasCorrectToolForDrops(dropState) && !player.getAbilities().instabuild) {
             Item slabItem = Item.byBlock(dropState.getBlock());
             if (slabItem != Items.AIR) {
                 ItemStack itemStack = new ItemStack(slabItem);
@@ -84,18 +85,18 @@ public class BlockBreakHandler {
                 double xOffset = level.getRandom().nextFloat() * scale + 1f - scale * 0.5;
                 double yOffset = level.getRandom().nextFloat() * scale + 1f - scale * 0.5;
                 double zOffset = level.getRandom().nextFloat() * scale + 1f - scale * 0.5;
-                ItemEntity entityItem = new ItemEntity(level,
-                        event.getPos().getX() + xOffset,
-                        event.getPos().getY() + yOffset,
-                        event.getPos().getZ() + zOffset,
+                ItemEntity entityItem = new ItemEntity(serverLevel,
+                        pos.getX() + xOffset,
+                        pos.getY() + yOffset,
+                        pos.getZ() + zOffset,
                         itemStack);
                 entityItem.setPickUpDelay(10);
                 level.addFreshEntity(entityItem);
             }
         }
 
-        event.getLevel().setBlock(event.getPos(), newState, 1 | 2);
-        event.setCanceled(true);
+        level.setBlock(pos, newState, 1 | 2);
+        return EventHandling.CANCEL;
     }
 
     public static BlockHitResult rayTrace(LivingEntity entity, double length) {

@@ -1,8 +1,9 @@
 package net.blay09.mods.kleeslabs;
 
-import net.blay09.mods.balm.api.Balm;
-import net.blay09.mods.balm.api.event.BreakBlockEvent;
-import net.blay09.mods.balm.api.event.server.ServerStartedEvent;
+import net.blay09.mods.balm.Balm;
+import net.blay09.mods.balm.core.BalmRegistrars;
+import net.blay09.mods.balm.platform.event.callback.BlockCallback;
+import net.blay09.mods.balm.platform.event.callback.ServerLifecycleCallback;
 import net.blay09.mods.kleeslabs.converter.DefaultSlabConverter;
 import net.blay09.mods.kleeslabs.converter.EnchantedVerticalSlabConverter;
 import net.blay09.mods.kleeslabs.converter.NemosVerticalSlabConverter;
@@ -16,17 +17,17 @@ public class KleeSlabs {
 
     public static final String MOD_ID = "kleeslabs";
 
-    public static void initialize() {
+    public static void initialize(BalmRegistrars registrars) {
         KleeSlabsConfig.initialize();
         SlabRegistry.registerSlabConverter(ModBlockTags.SLABS, new DefaultSlabConverter());
         SlabRegistry.registerSlabConverter(ModBlockTags.QUARK_VERTICAL_SLABS, new QuarkVerticalSlabConverter());
         SlabRegistry.registerSlabConverter(ModBlockTags.ENCHANTED_VERTICAL_SLABS, new EnchantedVerticalSlabConverter());
         SlabRegistry.registerSlabConverter(ModBlockTags.NEMOS_VERTICAL_SLABS, new NemosVerticalSlabConverter());
 
-        ModNetworking.initialize(Balm.getNetworking());
+        ModNetworking.initialize(Balm.networking());
 
-        Balm.getEvents().onEvent(ServerStartedEvent.class, SlabDumpHandler::onServerStarted);
-        Balm.getEvents().onEvent(BreakBlockEvent.class, BlockBreakHandler::onBreakBlock);
+        ServerLifecycleCallback.Started.EVENT.register(SlabDumpHandler::onServerStarted);
+        BlockCallback.Break.EVENT.register(BlockBreakHandler::onBreakBlock);
     }
 
     public static boolean isPlayerKleeSlabbing(Player player) {

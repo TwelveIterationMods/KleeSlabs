@@ -1,8 +1,8 @@
 package net.blay09.mods.kleeslabs;
 
-import net.blay09.mods.balm.api.Balm;
-import net.blay09.mods.balm.api.config.reflection.Comment;
-import net.blay09.mods.balm.api.config.reflection.Config;
+import net.blay09.mods.balm.Balm;
+import net.blay09.mods.balm.platform.config.reflection.Comment;
+import net.blay09.mods.balm.platform.config.reflection.Config;
 
 @Config(KleeSlabs.MOD_ID)
 public class KleeSlabsConfig {
@@ -13,10 +13,10 @@ public class KleeSlabsConfig {
     public boolean dumpSlabs = false;
 
     public static KleeSlabsConfig getActive() {
-        return Balm.getConfig().getActiveConfig(KleeSlabsConfig.class);
+        return Balm.config().getActiveConfig(KleeSlabsConfig.class);
     }
 
     public static void initialize() {
-        Balm.getConfig().registerConfig(KleeSlabsConfig.class);
+        Balm.config().registerConfig(KleeSlabsConfig.class);
     }
 }
