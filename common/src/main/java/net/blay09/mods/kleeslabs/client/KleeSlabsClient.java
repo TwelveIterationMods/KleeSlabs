@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.blay09.mods.balm.client.BalmClientRegistrars;
 import net.blay09.mods.balm.client.platform.event.callback.RenderCallback;
-import net.blay09.mods.balm.platform.event.EventHandling;
 import net.blay09.mods.kleeslabs.KleeSlabs;
 import net.blay09.mods.kleeslabs.converter.HorizontalSlabConverter;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
@@ -28,14 +27,14 @@ public class KleeSlabsClient {
         RenderCallback.BlockHighlight.EVENT.register(KleeSlabsClient::onDrawBlockHighlight);
     }
 
-    private static EventHandling onDrawBlockHighlight(BlockHitResult hitResult, PoseStack poseStack, MultiBufferSource multiBufferSource, Camera camera) {
+    private static boolean onDrawBlockHighlight(BlockHitResult hitResult, PoseStack poseStack, MultiBufferSource multiBufferSource, Camera camera) {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null || !KleeSlabs.isPlayerKleeSlabbing(player)) {
-            return EventHandling.RESUME;
+            return true;
         }
 
         if (hitResult.getType() != HitResult.Type.BLOCK) {
-            return EventHandling.RESUME;
+            return true;
         }
 
         BlockPos pos = hitResult.getBlockPos();
@@ -55,9 +54,9 @@ public class KleeSlabsClient {
             double camZ = camera.position().z;
             ShapeRenderer.renderShape(poseStack, vertexBuilder, shape, -camX, -camY, -camZ, 0x66000000, 7f);
 
-            return EventHandling.CANCEL;
+            return false;
         }
 
-        return EventHandling.RESUME;
+        return true;
     }
 }

@@ -1,7 +1,6 @@
 package net.blay09.mods.kleeslabs;
 
 import net.blay09.mods.balm.Balm;
-import net.blay09.mods.balm.platform.event.EventHandling;
 import net.blay09.mods.kleeslabs.converter.HorizontalSlabConverter;
 import net.blay09.mods.kleeslabs.converter.VerticalSlabConverter;
 import net.blay09.mods.kleeslabs.registry.SlabRegistry;
@@ -26,13 +25,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class BlockBreakHandler {
 
-    public static EventHandling onBreakBlock(LevelAccessor level, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, @Nullable Player player) {
+    public static boolean onBreakBlock(LevelAccessor level, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, @Nullable Player player) {
         if (Balm.hooks().isFakePlayer(player)) {
-            return EventHandling.RESUME;
+            return true;
         }
 
         if (!KleeSlabs.isPlayerKleeSlabbing(player)) {
-            return EventHandling.RESUME;
+            return true;
         }
 
         final var blockReachDistance = player.getAttributeValue(Attributes.BLOCK_INTERACTION_RANGE);
@@ -47,7 +46,7 @@ public class BlockBreakHandler {
 
         final var slabConverter = SlabRegistry.getSlabConverter(state).orElse(null);
         if (slabConverter == null || !slabConverter.isDoubleSlab(state)) {
-            return EventHandling.RESUME;
+            return true;
         }
 
         SlabType hit;
@@ -71,10 +70,10 @@ public class BlockBreakHandler {
                 dropState = verticalSlabConverter.getSingleSlab(state, level, pos, player, hitSide.getOpposite());
                 newState = verticalSlabConverter.getSingleSlab(state, level, pos, player, hitSide);
             } else {
-                return EventHandling.RESUME;
+                return true;
             }
         } else {
-            return EventHandling.RESUME;
+            return true;
         }
 
         if (level instanceof ServerLevel serverLevel && player.hasCorrectToolForDrops(dropState) && !player.getAbilities().instabuild) {
@@ -96,7 +95,7 @@ public class BlockBreakHandler {
         }
 
         level.setBlock(pos, newState, 1 | 2);
-        return EventHandling.CANCEL;
+        return false;
     }
 
     public static BlockHitResult rayTrace(LivingEntity entity, double length) {

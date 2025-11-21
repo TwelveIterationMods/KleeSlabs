@@ -27,7 +27,7 @@ public class KleeSlabs {
         ModNetworking.initialize(Balm.networking());
 
         ServerLifecycleCallback.Started.EVENT.register(SlabDumpHandler::onServerStarted);
-        BlockCallback.Break.EVENT.register(BlockBreakHandler::onBreakBlock);
+        BlockCallback.Break.Before.EVENT.register(BlockBreakHandler::onBreakBlock);
     }
 
     public static boolean isPlayerKleeSlabbing(Player player) {
