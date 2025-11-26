@@ -1,1 +1,1 @@
-- Updated to Minecraft 1.21.10
+- Fixed High Contrast Block Outlines option not applying to KleeSlabs
