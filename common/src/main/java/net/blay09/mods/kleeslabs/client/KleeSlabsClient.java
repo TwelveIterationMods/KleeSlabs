@@ -27,7 +27,7 @@ public class KleeSlabsClient {
         RenderCallback.BlockHighlight.EVENT.register(KleeSlabsClient::onDrawBlockHighlight);
     }
 
-    private static boolean onDrawBlockHighlight(BlockHitResult hitResult, PoseStack poseStack, MultiBufferSource multiBufferSource, Camera camera) {
+    private static boolean onDrawBlockHighlight(BlockHitResult hitResult, PoseStack poseStack, MultiBufferSource multiBufferSource, Camera camera, int color, float lineWidth) {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null || !KleeSlabs.isPlayerKleeSlabbing(player)) {
             return true;
@@ -52,7 +52,7 @@ public class KleeSlabsClient {
             double camX = camera.position().x;
             double camY = camera.position().y;
             double camZ = camera.position().z;
-            ShapeRenderer.renderShape(poseStack, vertexBuilder, shape, -camX, -camY, -camZ, 0x66000000, 7f);
+            ShapeRenderer.renderShape(poseStack, vertexBuilder, shape, -camX, -camY, -camZ, color, lineWidth);
 
             return false;
         }
