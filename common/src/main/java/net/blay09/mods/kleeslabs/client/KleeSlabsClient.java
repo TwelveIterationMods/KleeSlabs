@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ShapeRenderer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
@@ -56,7 +57,9 @@ public class KleeSlabsClient {
             double camX = camera.getPosition().x;
             double camY = camera.getPosition().y;
             double camZ = camera.getPosition().z;
-            ShapeRenderer.renderShape(poseStack, vertexBuilder, shape, -camX, -camY, -camZ, 0x66000000);
+            final var highContrast = Minecraft.getInstance().options.highContrastBlockOutline().get();
+            final var color = highContrast ? 0xFF57FFE1 : ARGB.color(0x66, 0xFF000000);
+            ShapeRenderer.renderShape(poseStack, vertexBuilder, shape, -camX, -camY, -camZ, color);
 
             event.setCanceled(true);
         }
