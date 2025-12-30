@@ -1,5 +1,5 @@
 {
-  "modid": "evs",
+  "modid": "enchanted-vertical-slabs",
   "converter": "EnchantedVerticalSlabConverter",
   "slabs": [
     "vertical_acacia_slab",
