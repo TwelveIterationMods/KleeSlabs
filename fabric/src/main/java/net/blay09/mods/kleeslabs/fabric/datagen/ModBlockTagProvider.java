@@ -271,7 +271,7 @@ public class ModBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
     }
 
     private static Identifier enchantedVerticalSlabs(String path) {
-        return Identifier.fromNamespaceAndPath("evs", path);
+        return Identifier.fromNamespaceAndPath("enchanted-vertical-slabs", path);
     }
 
     private static Identifier nemosVerticalSlabs(String path) {
