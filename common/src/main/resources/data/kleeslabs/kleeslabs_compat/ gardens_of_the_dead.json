@@ -1,0 +1,10 @@
+{
+  "modid": "gardens_of_the_dead",
+  "silent": true,
+  "converter": "SmartSlabConverter",
+  "slabs": [
+    "soulblight_slab",
+    "whistlecane_mosaic_slab",
+    "whistlecane_slab"
+  ]
+}
