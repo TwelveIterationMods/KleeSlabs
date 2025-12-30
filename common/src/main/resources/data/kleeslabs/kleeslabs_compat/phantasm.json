@@ -3,11 +3,11 @@
   "silent": true,
   "converter": "SmartSlabConverter",
   "slabs": [
-    "cirite_bricks_slab",
-    "crystal_tiles_slab",
-    "polished_obsidian_bricks_slab",
+    "cirite_brick_slab",
+    "crystal_tile_slab",
+    "polished_obsidian_brick_slab",
     "pream_slab",
-    "raw_purpur_bricks_slab",
-    "void_crystal_tiles_slab"
+    "raw_purpur_brick_slab",
+    "void_crystal_tile_slab"
   ]
 }
