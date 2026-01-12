@@ -1,11 +1,2 @@
-- Added support for Nemo's Vertical Slabs
-- Added support for Beach Party
-- Added support for Bygone Nether
-- Added support for Gipples Galore
-- Added support for Mo Glass
-- Added support for Pale Garden Backport
-- Added support for Phantasm,
-- Added support for Sniffer Plus
-- Added support for Suppsquared
-- Added support for Yung's Cave Biomes
+- Added support for slabs of Gardens of the Dead, misisng Minecraft slabs, and Phantasm
 - Fixed support for Enchanted Vertical Slabs
