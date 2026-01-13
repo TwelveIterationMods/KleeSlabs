@@ -1,4 +1,1 @@
-- Added support for Gardens of the Dead
-- Added support for Pale Oak and Resin Brick Slab
-- Fixed support for Enchanted Vertical Slabs
-- Fixed support for Phantasm Slabs
+- Fixed Phantasm slabs no longer working since last update
