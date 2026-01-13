@@ -1,2 +1,1 @@
-- Added support for slabs of Gardens of the Dead, misisng Minecraft slabs, and Phantasm
-- Fixed support for Enchanted Vertical Slabs
+- Fixed incorrect space in filename causing Gardens of the Dead compat not to load
