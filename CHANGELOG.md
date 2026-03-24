@@ -1,1 +1,1 @@
-- Fixed support for Enchanted Vertical Slabs
+- Updated to Minecraft 26.1
