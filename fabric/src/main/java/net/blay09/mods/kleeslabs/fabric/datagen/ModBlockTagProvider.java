@@ -1,25 +1,23 @@
 package net.blay09.mods.kleeslabs.fabric.datagen;
 
 import net.blay09.mods.kleeslabs.tag.ModBlockTags;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
-    public ModBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        super(output, Registries.BLOCK, registriesFuture, (block) -> block.builtInRegistryHolder().key());
+public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
+    public ModBlockTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider arg) {
-        tag(ModBlockTags.SLABS).addOptionalTag(BlockTags.SLABS);
-        tag(ModBlockTags.VERTICAL_SLABS)
+        valueLookupBuilder(ModBlockTags.SLABS).addOptionalTag(BlockTags.SLABS);
+        valueLookupBuilder(ModBlockTags.VERTICAL_SLABS)
                 .addOptionalTag(ModBlockTags.QUARK_VERTICAL_SLABS)
                 .addOptionalTag(ModBlockTags.ENCHANTED_VERTICAL_SLABS)
                 .addOptionalTag(ModBlockTags.NEMOS_VERTICAL_SLABS);

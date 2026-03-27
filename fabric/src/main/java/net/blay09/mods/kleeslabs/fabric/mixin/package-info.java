@@ -1,4 +1,4 @@
 @NullMarked
-package net.blay09.mods.kleeslabs.registry.json;
+package net.blay09.mods.kleeslabs.fabric.mixin;
 
 import org.jspecify.annotations.NullMarked;

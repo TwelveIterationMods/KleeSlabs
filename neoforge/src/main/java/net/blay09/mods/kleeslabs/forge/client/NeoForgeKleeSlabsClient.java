@@ -1,8 +1,9 @@
-package net.blay09.mods.kleeslabs.client;
+package net.blay09.mods.kleeslabs.forge.client;
 
 import net.blay09.mods.balm.client.BalmClient;
 import net.blay09.mods.balm.neoforge.platform.runtime.NeoForgeLoadContext;
 import net.blay09.mods.kleeslabs.KleeSlabs;
+import net.blay09.mods.kleeslabs.client.KleeSlabsClient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;

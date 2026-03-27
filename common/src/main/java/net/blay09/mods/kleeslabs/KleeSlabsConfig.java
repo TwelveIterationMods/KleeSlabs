@@ -4,6 +4,8 @@ import net.blay09.mods.balm.Balm;
 import net.blay09.mods.balm.platform.config.reflection.Comment;
 import net.blay09.mods.balm.platform.config.reflection.Config;
 
+import java.util.Objects;
+
 @Config(KleeSlabs.MOD_ID)
 public class KleeSlabsConfig {
     @Comment("Control whether KleeSlabs should trigger ALWAYS, ONLY_WHEN_SNEAKING or ONLY_WHEN_NOT_SNEAKING")
@@ -13,7 +15,7 @@ public class KleeSlabsConfig {
     public boolean dumpSlabs = false;
 
     public static KleeSlabsConfig getActive() {
-        return Balm.config().getActiveConfig(KleeSlabsConfig.class);
+        return Objects.requireNonNull(Balm.config().getActiveConfig(KleeSlabsConfig.class));
     }
 
     public static void initialize() {

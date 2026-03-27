@@ -26,7 +26,7 @@ import org.jspecify.annotations.Nullable;
 public class BlockBreakHandler {
 
     public static boolean onBreakBlock(LevelAccessor level, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, @Nullable Player player) {
-        if (Balm.hooks().isFakePlayer(player)) {
+        if (player == null || Balm.hooks().isFakePlayer(player)) {
             return true;
         }
 
