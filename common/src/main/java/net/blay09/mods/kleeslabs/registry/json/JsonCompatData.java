@@ -1,7 +1,7 @@
 package net.blay09.mods.kleeslabs.registry.json;
 
 import com.google.gson.annotations.SerializedName;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Set;
