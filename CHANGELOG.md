@@ -1,1 +1,2 @@
-- Fixed Phantasm slabs no longer working since last update
+- Fixed config translation keys
+- Fixed crash on wrongly configured datapacks
