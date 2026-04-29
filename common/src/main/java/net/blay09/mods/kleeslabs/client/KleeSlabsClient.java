@@ -10,9 +10,9 @@ import net.blay09.mods.kleeslabs.registry.SlabRegistry;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.ShapeRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.state.level.BlockOutlineRenderState;
+import net.minecraft.client.renderer.state.level.LevelRenderState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -27,14 +27,14 @@ public class KleeSlabsClient {
         RenderCallback.BlockHighlight.EVENT.register(KleeSlabsClient::onDrawBlockHighlight);
     }
 
-    private static boolean onDrawBlockHighlight(BlockHitResult hitResult, PoseStack poseStack, MultiBufferSource multiBufferSource, Camera camera, int color, float lineWidth) {
+    private static BlockOutlineRenderState onDrawBlockHighlight(BlockHitResult hitResult, Camera camera, BlockOutlineRenderState blockOutlineRenderState) {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null || !KleeSlabs.isPlayerKleeSlabbing(player)) {
-            return true;
+            return blockOutlineRenderState;
         }
 
         if (hitResult.getType() != HitResult.Type.BLOCK) {
-            return true;
+            return blockOutlineRenderState;
         }
 
         BlockPos pos = hitResult.getBlockPos();
@@ -46,17 +46,12 @@ public class KleeSlabsClient {
                 halfAABB = halfAABB.move(0, 0.5, 0);
             }
 
-            VertexConsumer vertexBuilder = multiBufferSource.getBuffer(RenderTypes.LINES);
             VoxelShape shape = Shapes.create(halfAABB.inflate(0.002));
-
-            double camX = camera.position().x;
-            double camY = camera.position().y;
-            double camZ = camera.position().z;
-            ShapeRenderer.renderShape(poseStack, vertexBuilder, shape, -camX, -camY, -camZ, color, lineWidth);
-
-            return false;
+            final var translucent = blockOutlineRenderState.isTranslucent();
+            final var highContrast = blockOutlineRenderState.highContrast();
+            return new BlockOutlineRenderState(pos, translucent, highContrast, shape);
         }
 
-        return true;
+        return blockOutlineRenderState;
     }
 }

@@ -16,8 +16,8 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider arg) {
-        valueLookupBuilder(ModBlockTags.SLABS).addOptionalTag(BlockTags.SLABS);
-        valueLookupBuilder(ModBlockTags.VERTICAL_SLABS)
+        tag(ModBlockTags.SLABS).addOptionalTag(BlockTags.SLABS);
+        tag(ModBlockTags.VERTICAL_SLABS)
                 .addOptionalTag(ModBlockTags.QUARK_VERTICAL_SLABS)
                 .addOptionalTag(ModBlockTags.ENCHANTED_VERTICAL_SLABS)
                 .addOptionalTag(ModBlockTags.NEMOS_VERTICAL_SLABS);
