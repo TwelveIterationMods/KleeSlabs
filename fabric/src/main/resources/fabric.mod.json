@@ -25,6 +25,9 @@
     "client": [
       "net.blay09.mods.kleeslabs.fabric.client.FabricKleeSlabsClient"
     ],
+    "fabric-datagen": [
+      "net.blay09.mods.kleeslabs.datagen.FabricKleeSlabsDataGenerator"
+    ],
     "modmenu": [
       "net.blay09.mods.kleeslabs.fabric.compat.ModMenuIntegration"
     ]

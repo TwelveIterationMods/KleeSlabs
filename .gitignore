@@ -17,6 +17,7 @@ out
 # gradle
 build
 .gradle
+**/src/main/generated/.cache/
 
 # other
 eclipse

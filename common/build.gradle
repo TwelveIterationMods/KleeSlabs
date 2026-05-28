@@ -20,6 +20,15 @@ neoForge {
     }
 }
 
+sourceSets {
+    main {
+        resources {
+            setSrcDirs(['src/main/resources', 'src/main/generated'])
+            exclude '.cache/**'
+        }
+    }
+}
+
 dependencies {
     compileOnly "org.spongepowered:mixin:$mixin_version"
 }
