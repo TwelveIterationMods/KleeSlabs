@@ -1,2 +1,1 @@
-- Fixed config translation keys
-- Fixed crash on wrongly configured datapacks
+- Added support for all slabs that are tagged `minecraft:slabs` and use standard slab properties
