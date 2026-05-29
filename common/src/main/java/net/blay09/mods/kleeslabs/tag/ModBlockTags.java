@@ -14,6 +14,6 @@ public class ModBlockTags {
     public static final TagKey<Block> NEMOS_VERTICAL_SLABS = create("vertical_slabs/nemos_vertical_slabs");
 
     private static TagKey<Block> create(String path) {
-        return TagKey.create(Registries.BLOCK, new ResourceLocation(KleeSlabs.MOD_ID, path));
+        return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(KleeSlabs.MOD_ID, path));
     }
 }
