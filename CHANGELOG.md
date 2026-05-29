@@ -1,1 +1,1 @@
-- Fixed incorrect space in filename causing Gardens of the Dead compat not to load
+- Added support for all slabs that are tagged `minecraft:slabs` and use standard slab properties
